@@ -2,57 +2,61 @@
 
 # Heyy! 👋 I'm Rohan Sharma Sitoula
 
-🌟 **Tech Explorer & AI Enthusiast** diving into the wild world of AI-powered proctoring, speedy video analytics, and rock-solid distributed systems!  
-📍 Bengaluru, India | 🧠 Mad about AI & Systems Magic
+🌟 **Tech Explorer & AI Enthusiast** — building AI-powered proctoring, fast video analytics, and resilient distributed systems.  
+📍 Bengaluru, India | 🧠 Passionate about AI, systems, and developer experience
 
 📧 [Drop me a line](mailto:sitoularohansharma@gmail.com) | 📱 +91 78668 57257  
-💼 [LinkedIn Hangout](https://linkedin.com/in/rohan-sharma-sitoula) | 💻 [GitHub Adventures](https://github.com/rohansharmasitoula)
+💼 [LinkedIn](https://linkedin.com/in/rohan-sharma-sitoula) | 💻 [GitHub](https://github.com/rohansharmasitoula)
 
 ***
 
-## 🌈 A Bit About Me  
-I’m a software wizard at Talview, building AI agents that spot exam shenanigans, lightning-fast video processors, and unbreakable systems with 99.99% uptime. Slashed manual reviews by 95% using Llama magic—let's geek out on tech! 🚀  
+## 🌈 A Bit About Me
+I build production-grade AI systems at Talview — from Llama-powered proctoring agents that analyze video to low-latency pipelines that process and surface alerts in real time. I focus on reliability, observability, and scaling systems to serve thousands of users.
 
-### 🗺️ My Tech Journey  
-#### Talview — Bengaluru  
-**Tech Wizard | 2025–Now** 🧙♂️  
-- 🦙 Llama AI proctor with vision smarts  
-- 📹 Real-time pipelines & alerts  
-- 📉 95% less false alarms!  
+### 🗺️ My Tech Journey
+#### Talview — Bengaluru
+**Tech Wizard | 2025–Now** 🧙‍♂️
+- Built a Llama RAG-based proctor with multimodal vision features
+- Real-time video pipelines, alerts, and near-instant inference
+- Reduced manual review workload by 95% through automation
 
-**Code Crafter | 2023–2025** ⚙️  
-- 🛠️ Microservices with Kafka  
-- 🌍 Scaled to 10k+ users  
-- ⏱️ 95% faster onboarding  
+**Code Crafter | 2023–2025** ⚙️
+- Microservices, Kafka-based eventing, and observability
+- Scaled systems to serve 10k+ users
+- Improved onboarding latency and developer experience
 
-**Tech Intern | 2023** 🌱  
-- 🤖 Slack bot magic  
-- 🧪 Better testing vibes  
-
-***
-
-## 🦸♂️ My Superpowers  
-- **AI Magic:** Llama RAG, vision tricks 🧠  
-- **Code Vibes:** Python, JS, Node.js 💻  
-- **System Skills:** Kafka, AWS, Docker ☁️  
-- **Data Tools:** PostgreSQL, Redis 📊  
-- **Watchful Eye:** Grafana, Sentry 👀  
-
-
-- **Alvy AI Proctor** 🕵️♂️ – Real-time exam guardian  
-- **Video Wizardry** 📹 – Instant anomaly spotting  
-- **Onboarding Magic** 🔧 – SSO super speed  
-- **Browser Buddy** 🌐 – Tab-tracking fun  
+**Tech Intern | 2023** 🌱
+- Built developer tools and improved test coverage
 
 ***
 
-## 🏆 Epic Wins  
-🚀 95% manual cut with AI!  
-📈 99.99% system uptime  
-⚡ 95% faster setups  
+## 🦸‍♂️ My Superpowers
+- **AI & ML:** Llama RAG, vision models, prompt engineering
+- **Backend & Systems:** Python, Node.js, Kafka, AWS, Docker
+- **Data & Storage:** PostgreSQL, Redis
+- **Observability:** Grafana, Sentry, logging and metrics
 
-*** 
-# 📊 GitHub Galaxy  
+## Selected Projects
+- **Alvy AI Proctor** — Real-time exam guardian powered by vision + LLMs
+- **Video Wizardry** — Low-latency anomaly detection pipelines
+- **Onboarding Magic** — SSO flows and developer-facing tools
+
+***
+
+## 🏆 Highlights
+- 🚀 Reduced manual review by ~95% using automation and ML
+- 📈 Built systems achieving 99.99% uptime
+- ⚡ Improved onboarding times by 95%
+
+***
+# 📊 GitHub Stats & Trends
+
+<a href="https://githubtrends.io">
+  <img align="center" src="https://api.githubtrends.io/user/svg/rohansharmasitoula/langs?time_range=one_year&include_private=True&loc_metric=changed" />
+</a>
+<a href="https://githubtrends.io">
+  <img align="center" src="https://api.githubtrends.io/user/svg/rohansharmasitoula/repos?time_range=one_year&include_private=True&group=private&loc_metric=changed" />
+</a>
 
 <table>
   <tr>
@@ -72,5 +76,14 @@ I’m a software wizard at Talview, building AI agents that spot exam shenanigan
 
 ---
 
-💬 Chat AI, systems, or privacy tech? Hit me up! 🌟
+## Quickstart — Add GitHub Trends cards to your profile
+1. Visit https://api.githubtrends.io/auth/signup/public and sign up for GitHub Trends.
+2. Paste this markdown into your README (replace the username):
 
+```md
+[![GitHub Trends SVG](https://api.githubtrends.io/user/svg/rohansharmasitoula/langs)](https://githubtrends.io)
+```
+
+---
+
+💬 Want to chat about AI, systems, or privacy-focused engineering? Reach out — I love collaborating on meaningful infra and ML work.
