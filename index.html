@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rohan Sharma Sitoula · AI Proctoring Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #030714;
+        --panel: #0a0f26;
+        --panel-dark: #070b1c;
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --accent: #38f0c8;
+        --accent-2: #f97316;
+        --accent-3: #8b5cf6;
+        --border: rgba(255, 255, 255, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: radial-gradient(circle at top, rgba(56, 240, 200, 0.15), transparent 45%),
+          radial-gradient(circle at bottom, rgba(139, 92, 246, 0.12), transparent 40%),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        padding: 0 16px 80px;
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      section {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 32px;
+        margin-top: 32px;
+        box-shadow: 0 30px 60px rgba(5, 10, 30, 0.35);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: 'Space Grotesk', sans-serif;
+        margin: 0 0 16px;
+      }
+
+      h1 {
+        font-size: clamp(32px, 5vw, 56px);
+      }
+
+      h2 {
+        font-size: clamp(26px, 3vw, 36px);
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 48px 32px 56px;
+      }
+
+      .hero::before,
+      .hero::after {
+        content: '';
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(56, 240, 200, 0.35), transparent 60%);
+        filter: blur(2px);
+        animation: pulse 8s ease-in-out infinite;
+      }
+
+      .hero::before {
+        top: -140px;
+        left: -60px;
+      }
+
+      .hero::after {
+        bottom: -160px;
+        right: -40px;
+        animation-delay: 2s;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 0.4;
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .subhead {
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .badge {
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(56, 240, 200, 0.08);
+        border: 1px solid rgba(56, 240, 200, 0.3);
+        font-size: 14px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .grid-cols-3 {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .stat-card {
+        border-radius: 20px;
+        padding: 20px;
+        background: var(--panel-dark);
+        border: 1px solid var(--border);
+      }
+
+      .stat-card h3 {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+
+      .stat-card .value {
+        font-size: 34px;
+        font-weight: 600;
+      }
+
+      .metric-bar {
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        overflow: hidden;
+        margin-top: 12px;
+      }
+
+      .metric-bar span {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+        animation: slide 6s ease-in-out infinite;
+      }
+
+      @keyframes slide {
+        0% {
+          width: 30%;
+        }
+        50% {
+          width: 95%;
+        }
+        100% {
+          width: 40%;
+        }
+      }
+
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        position: relative;
+        padding-left: 32px;
+      }
+
+      .timeline::before {
+        content: '';
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        left: 12px;
+        width: 2px;
+        background: linear-gradient(180deg, var(--accent), var(--accent-3));
+        opacity: 0.7;
+      }
+
+      .timeline-card {
+        display: flex;
+        gap: 16px;
+        padding: 18px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        background: var(--panel-dark);
+        position: relative;
+      }
+
+      .timeline-card::before {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid var(--panel);
+        background: var(--accent);
+        left: -32px;
+        top: 28px;
+        box-shadow: 0 0 12px rgba(56, 240, 200, 0.4);
+      }
+
+      .timeline-card img {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: #050a1f;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 8px;
+      }
+
+      ul.styled {
+        padding-left: 20px;
+      }
+
+      ul.styled li {
+        margin-bottom: 10px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+      }
+
+      table th,
+      table td {
+        padding: 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      table th {
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+        text-align: left;
+      }
+
+      table img {
+        max-width: 60px;
+      }
+
+      .spotlight-cards {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .github-metrics {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+
+      .github-metrics img {
+        width: 100%;
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        background: var(--panel-dark);
+        padding: 12px;
+      }
+
+      .spotlight-card {
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        background: var(--panel-dark);
+        padding: 20px;
+      }
+
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .link-btn {
+        padding: 12px 18px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .link-btn:hover {
+        transform: translateY(-2px);
+        border-color: var(--accent);
+      }
+
+      @media (max-width: 640px) {
+        section {
+          padding: 24px;
+        }
+        .timeline-card {
+          flex-direction: column;
+        }
+        .timeline-card img {
+          width: 48px;
+          height: 48px;
+        }
+        .timeline {
+          padding-left: 20px;
+        }
+        .timeline-card::before {
+          left: -26px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero" id="top">
+        <div class="hero-content">
+          <h1>Rohan Sharma Sitoula</h1>
+          <p class="subhead">Senior software engineer helping Talview ship reliable hiring platforms, smoother reviewer tools, and calmer releases.</p>
+          <div class="badges">
+            <span class="badge">Bengaluru, India</span>
+            <span class="badge">Talview · Senior Software Engineer</span>
+            <span class="badge">Platform · Reliability · Developer Experience</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="focus">
+        <h2>Current focus</h2>
+        <div class="grid grid-cols-3">
+          <article class="stat-card">
+            <h3>Modular reviewer surface</h3>
+            <p>Turning the reviewer UI into an extensible platform other squads can plug into safely.</p>
+          </article>
+          <article class="stat-card">
+            <h3>Service migrations</h3>
+            <p>Splitting a monolith into event-driven services with shared contracts and tooling.</p>
+          </article>
+          <article class="stat-card">
+            <h3>Delivery guardrails</h3>
+            <p>Feature flags, automated runbooks, and SLO burn alerts so weekly releases stay boring.</p>
+          </article>
+        </div>
+
+        <div class="grid grid-cols-3" style="margin-top:24px;">
+          <article class="stat-card">
+            <h3>Services in prod</h3>
+            <div class="value">28+</div>
+            <div class="metric-bar"><span></span></div>
+          </article>
+          <article class="stat-card">
+            <h3>Deploy cadence</h3>
+            <div class="value">8-12/wk</div>
+            <div class="metric-bar"><span></span></div>
+          </article>
+          <article class="stat-card">
+            <h3>Change failure</h3>
+            <div class="value">&lt;3%</div>
+            <div class="metric-bar"><span></span></div>
+          </article>
+          <article class="stat-card">
+            <h3>Rollback time</h3>
+            <div class="value">12 min</div>
+            <div class="metric-bar"><span></span></div>
+          </article>
+          <article class="stat-card">
+            <h3>Error budget</h3>
+            <div class="value">&lt;20%</div>
+            <div class="metric-bar"><span></span></div>
+          </article>
+          <article class="stat-card">
+            <h3>Ops coverage</h3>
+            <div class="value">Follow-the-sun</div>
+            <div class="metric-bar"><span></span></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="highlights">
+        <h2>Highlights</h2>
+        <ul class="styled">
+          <li><strong>Platforms over projects:</strong> Broke a feature team mindset by building shared reviewer components and API contracts.</li>
+          <li><strong>Deploys with receipts:</strong> Feature flags, preview envs, and release scorecards became required before flipping toggles.</li>
+          <li><strong>Incident calm:</strong> Introduced SLO burn alerts, templated RCAs, and automated dashboards so on-call has context.</li>
+          <li><strong>Mentor-mode:</strong> Pairing hours + architecture office hours raise the floor for new hires and interns.</li>
+        </ul>
+      </section>
+
+      <section id="spotlight">
+        <h2>Open source spotlight — blocknote-py</h2>
+        <p>Convert BlockNote.js blocks to HTML, Markdown, PDF, or JSON using type-safe Pydantic models. Perfect for FastAPI, Django, or Flask backends that need rich text on the server.</p>
+        <div class="spotlight-cards">
+          <article class="spotlight-card">
+            <h3>Why it helps</h3>
+            <p>Server-side BlockNote support without Node.js. Typed models keep payloads safe and easy to validate.</p>
+          </article>
+          <article class="spotlight-card">
+            <h3>What you get</h3>
+            <ul class="styled">
+              <li>HTML / Markdown / PDF converters with styling preserved.</li>
+              <li>95%+ test coverage, CI, and docs.</li>
+              <li>Optional extras pull in doc + PDF tooling only when needed.</li>
+            </ul>
+          </article>
+          <article class="spotlight-card">
+            <h3>Links</h3>
+            <p>
+              <a href="https://pypi.org/project/blocknote-py/">PyPI</a> ·
+              <a href="https://github.com/rohansharmasitoula/blocknote-py">GitHub</a> ·
+              <a href="https://rohansharmasitoula.github.io/blocknote-py/">Docs</a>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience">
+        <h2>Experience timeline</h2>
+        <div class="timeline">
+          <article class="timeline-card">
+            <img src="https://avatars.githubusercontent.com/u/5830358?s=80&v=4" alt="Talview" />
+            <div>
+              <h3>Senior Software Engineer · Talview <span style="color: var(--muted);">(2025 → Now)</span></h3>
+              <p>Leading platform work for reviewer tooling, observability, and deployment frameworks across squads.</p>
+            </div>
+          </article>
+          <article class="timeline-card">
+            <img src="https://avatars.githubusercontent.com/u/5830358?s=80&v=4" alt="Talview" />
+            <div>
+              <h3>Software Engineer · Talview <span style="color: var(--muted);">(2023 → 2025)</span></h3>
+              <p>Shipped event-driven services, integrations, and delivery tooling; championed feature flags and incident hygiene.</p>
+            </div>
+          </article>
+          <article class="timeline-card">
+            <img src="https://avatars.githubusercontent.com/u/5830358?s=80&v=4" alt="Talview" />
+            <div>
+              <h3>Engineering Intern → Associate SWE · Talview <span style="color: var(--muted);">(Jan 2023 → May 2023)</span></h3>
+              <p>Delivered Slack automation, tracing rollouts, and GraphQL migrations; documented playbooks for the next cohort.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Skill map</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Everyday tools</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>🧱 Platform & services</td>
+              <td>Python, Node.js/TypeScript, FastAPI, Nest, Kafka, Temporal, REST + GraphQL</td>
+            </tr>
+            <tr>
+              <td>🚀 Delivery & DevEx</td>
+              <td>Monorepos, NX/Turborepo, feature flags, CI/CD (Actions, Argo), IaC</td>
+            </tr>
+            <tr>
+              <td>☁️ Cloud & ops</td>
+              <td>AWS (Lambda, ECS, EC2, S3, SQS/SNS), Azure Blob, Docker, Kubernetes, Terraform</td>
+            </tr>
+            <tr>
+              <td>🗄 Storage & data</td>
+              <td>PostgreSQL, Redis, DynamoDB, Firebase, object storage</td>
+            </tr>
+            <tr>
+              <td>📈 Observability</td>
+              <td>OpenTelemetry, Prometheus, Grafana, Sentry, structured logs</td>
+            </tr>
+            <tr>
+              <td>🤝 Collaboration</td>
+              <td>RFCs, design reviews, incident command, customer handoffs, compliance-ready workflows</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="education">
+        <h2>Education</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Logo</th>
+              <th>Program</th>
+              <th>Years</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="https://smu.edu.in/smit/img/smit-logo-new.svg" alt="SMIT" /></td>
+              <td>MCA · Sikkim Manipal Institute of Technology</td>
+              <td>2021 – 2023</td>
+              <td>Sikkim, India</td>
+            </tr>
+            <tr>
+              <td><img src="https://smu.edu.in/smit/img/smit-logo-new.svg" alt="SMIT" /></td>
+              <td>BCA · Sikkim Manipal Institute of Technology</td>
+              <td>2018 – 2021</td>
+              <td>Sikkim, India</td>
+            </tr>
+            <tr>
+              <td><img src="https://jyothiscentralschool.org/public/assets/images/main/lightlogo.png" alt="Jyothis" /></td>
+              <td>Class 12 · Jyothis Central School</td>
+              <td>2017</td>
+              <td>Kerala, India</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="github">
+        <h2>GitHub rhythm</h2>
+        <div class="github-metrics">
+          <img src="https://github-readme-stats.vercel.app/api?username=rohansharmasitoula&show_icons=true&theme=tokyonight&count_private=true" alt="GitHub stats" loading="lazy" />
+          <img src="https://github-readme-activity-graph.vercel.app/graph?username=rohansharmasitoula&bg_color=050221&color=f97316&line=38f0c8&point=8b5cf6&area=true" alt="Activity graph" loading="lazy" />
+        </div>
+      </section>
+
+      <section id="values">
+        <h2>How I work</h2>
+        <ul class="styled">
+          <li><strong>Communicate early:</strong> short updates, dashboards, and runbooks keep everyone in the loop.</li>
+          <li><strong>Ship small, then harden:</strong> feature flags first, then tests + docs.</li>
+          <li><strong>Measure everything:</strong> latency, quality, and on-call noise decide what we fix next.</li>
+          <li><strong>Automate recovery:</strong> bots and scripts fix the obvious incidents before humans wake up.</li>
+          <li><strong>Partner with AI copilots:</strong> Codex, Claude Code, and similar tools help plan tasks, juggle worktrees, and accelerate delivery while keeping human review in charge.</li>
+        </ul>
+      </section>
+
+      <section id="contact">
+        <h2>Say hi</h2>
+        <p>If you’re wrestling with a migration, a release pipeline, or an observability gap, I’m probably debugging the same thing—reach out.</p>
+        <div class="links">
+          <a class="link-btn" href="mailto:sitoularohansharma@gmail.com">Email</a>
+          <a class="link-btn" href="https://linkedin.com/in/rohan-sharma-sitoula" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="link-btn" href="https://github.com/rohansharmasitoula" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="link-btn" href="https://t.me/rohansharmasitoula" target="_blank" rel="noreferrer">Telegram</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
