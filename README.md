@@ -92,22 +92,6 @@ _Feature flags, automated runbooks, and SLO burn alerts so weekly releases stay 
 | 📈 **Observability** | OpenTelemetry, Prometheus, Grafana, Sentry, structured logs |
 | 🤝 **Collaboration** | RFCs, design reviews, incident command, customer handoffs, compliance-ready workflows |
 
-## 🎓 Education
-
-| Institution | Program | Years | Location |
-|-------------|---------|-------|----------|
-| ![SMIT](https://smu.edu.in/smit/img/smit-logo-new.svg) | **MCA** · Sikkim Manipal Institute of Technology | 2021–2023 | Sikkim, India |
-| ![SMIT](https://smu.edu.in/smit/img/smit-logo-new.svg) | **BCA** · Sikkim Manipal Institute of Technology | 2018–2021 | Sikkim, India |
-| ![Jyothis](https://jyothiscentralschool.org/public/assets/images/main/lightlogo.png) | **Class 12** · Jyothis Central School | 2017 | Kerala, India |
-
-## 📈 GitHub Rhythm
-
-<div align="center">
-
-[![Rohan Sharma Sitoula's GitHub stats](https://github-readme-stats.vercel.app/api?username=rohansharmasitoula&show_icons=true&theme=tokyonight&count_private=true)](https://github.com/rohansharmasitoula)
-[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=rohansharmasitoula&bg_color=050221&color=f97316&line=38f0c8&point=8b5cf6&area=true)](https://github.com/rohansharmasitoula)
-
-</div>
 
 ## 💡 How I Work
 
