@@ -1,5 +1,4 @@
 <div align="center">
-
 # Rohan Sharma Sitoula
 **Senior software engineer helping Talview ship reliable hiring platforms, smoother reviewer tools, and calmer releases.**
 
@@ -7,12 +6,10 @@
 [![Talview](https://img.shields.io/badge/Talview-Senior%20Software%20Engineer-38f0c8?style=flat&logo=github)](https://talview.com)
 [![Focus](https://img.shields.io/badge/Focus-Platform%20·%20Reliability%20·%20DevEx-38f0c8?style=flat)](https://github.com/rohansharmasitoula)
 
-<br>
-
-[![Rohan's GitHub Stats](https://github-readme-stats.vercel.app/api?username=rohansharmasitoula&show_icons=true&theme=custom&hide=issues,contribs&bg_color=0a0f26&title_color=38f0c8&icon_color=38f0c8&text_color=ffffff&hide_border=true&card_width=400)](https://github.com/rohansharmasitoula)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=rohansharmasitoula&layout=compact&theme=custom&hide_border=true&bg_color=0a0f26&title_color=38f0c8&icon_color=38f0c8&text_color=ffffff&card_width=350)](https://github.com/rohansharmasitoula)
-
+[![Stats](https://stats.ashallendesign.co.uk/api?username=rohansharmasitoula&show_icons=true&theme=dark&hide=issues,contribs&bg_color=0a0f26&title_color=38f0c8&icon_color=38f0c8&text_color=ffffff)](https://github.com/rohansharmasitoula)
+[![Top Langs](https://stats.ashallendesign.co.uk/api/top-langs/?username=rohansharmasitoula&layout=compact&theme=dark&hide_border=true&bg_color=0a0f26&title_color=38f0c8&icon_color=38f0c8&text_color=ffffff)](https://github.com/rohansharmasitoula)
 </div>
+>
 
 
 ## 🚀 Current Focus
