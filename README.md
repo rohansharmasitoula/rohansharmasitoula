@@ -7,6 +7,9 @@
 [![Talview](https://img.shields.io/badge/Talview-Senior%20Software%20Engineer-38f0c8?style=flat&logo=github)](https://talview.com)
 [![Focus](https://img.shields.io/badge/Focus-Platform%20·%20Reliability%20·%20DevEx-38f0c8?style=flat)](https://github.com/rohansharmasitoula)
 
+[![Rohan's GitHub Stats](https://github-readme-stats.vercel.app/api?username=rohansharmasitoula&show_icons=true&theme=radical&hide_border=true&bg_color=0a0f2638f0c8&title_color=38f0c8&icon_color=38f0c8&text_color=ffffff&hide=issues)](https://github.com/rohansharmasitoula)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=rohansharmasitoula&layout=compact&theme=radical&hide_border=true&bg_color=0a0f2638f0c8&title_color=38f0c8&icon_color=38f0c8&text_color=ffffff)](https://github.com/rohansharmasitoula)
+
 </div>
 
 ## 🚀 Current Focus
@@ -92,7 +95,6 @@ _Feature flags, automated runbooks, and SLO burn alerts so weekly releases stay 
 | 📈 **Observability** | OpenTelemetry, Prometheus, Grafana, Sentry, structured logs |
 | 🤝 **Collaboration** | RFCs, design reviews, incident command, customer handoffs, compliance-ready workflows |
 
-
 ## 💡 How I Work
 
 - **Communicate early**: Short updates, dashboards, and runbooks keep everyone in the loop.
@@ -119,4 +121,3 @@ _Feature flags, automated runbooks, and SLO burn alerts so weekly releases stay 
 [![Footer](https://img.shields.io/badge/Made%20with-Markdown-38f0c8?style=flat&logo=github)](https://github.com/rohansharmasitoula)
 
 </div>
-
