@@ -44,5 +44,6 @@ export const state = {
     targetSwayX: 0,
     targetSwayY: 0,
     profilePicImage: null,
-    achievementImages: []
+    achievementImages: [],
+    enlargedScreen: null
 };

@@ -326,6 +326,13 @@ export function redrawTerminalScreen(screenMesh) {
                 drawCracks(ctx, impact.x, impact.y);
             });
         }
+
+        if (state.enlargedScreen === screenMesh) {
+            ctx.fillStyle = '#f87171';
+            ctx.font = "bold 24px 'Orbitron', Arial, sans-serif";
+            ctx.textAlign = 'center';
+            ctx.fillText("SHOOT SCREEN AGAIN TO CLOSE ENLARGED VIEW", canvas.width / 2, canvas.height - 40);
+        }
     }
     screenMesh.userData.texture.needsUpdate = true;
 }
@@ -350,7 +357,8 @@ export function createTerminalScreen(spec) {
         emissive: new THREE.Color(spec.color),
         emissiveIntensity: 0.15,
         roughness: 0.3,
-        metalness: 0.8
+        metalness: 0.8,
+        side: THREE.DoubleSide
     });
     const screenMesh = new THREE.Mesh(screenGeo, screenMat);
     screenMesh.position.set(spec.x, 3.5, spec.z);
@@ -378,4 +386,29 @@ export function createTerminalScreen(spec) {
     frameMesh.position.copy(screenMesh.position).add(offsetDir);
     frameMesh.rotation.y = spec.rotY;
     state.scene.add(frameMesh);
+}
+
+export function enlargeScreen(screenMesh) {
+    state.enlargedScreen = screenMesh;
+    screenMesh.userData.originalPosition = screenMesh.position.clone();
+    screenMesh.userData.originalRotation = screenMesh.rotation.clone();
+    screenMesh.userData.originalGeometry = screenMesh.geometry;
+
+    const curveGeo = new THREE.CylinderGeometry(5, 5, 3.75, 32, 1, true, Math.PI * 0.85, Math.PI * 0.3);
+    screenMesh.geometry = curveGeo;
+
+    const cameraDirection = new THREE.Vector3(0, 0, -1).applyQuaternion(state.camera.quaternion);
+    const targetPos = state.camera.position.clone().add(cameraDirection.multiplyScalar(4.0));
+    screenMesh.position.copy(targetPos);
+    screenMesh.lookAt(state.camera.position);
+
+    redrawTerminalScreen(screenMesh);
+}
+
+export function restoreEnlargedScreen(screenMesh) {
+    state.enlargedScreen = null;
+    screenMesh.geometry = screenMesh.userData.originalGeometry;
+    screenMesh.position.copy(screenMesh.userData.originalPosition);
+    screenMesh.rotation.copy(screenMesh.userData.originalRotation);
+    redrawTerminalScreen(screenMesh);
 }

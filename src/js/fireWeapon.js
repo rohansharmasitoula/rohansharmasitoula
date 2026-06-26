@@ -1,5 +1,5 @@
 import { state } from './state.js';
-import { redrawTerminalScreen } from './createTerminalScreen.js';
+import { redrawTerminalScreen, enlargeScreen, restoreEnlargedScreen } from './createTerminalScreen.js';
 
 export function fireWeapon() {
     const weaponContainer = document.getElementById('weapon-container');
@@ -57,6 +57,11 @@ export function fireWeapon() {
                 state.screenStates[key].impacts.push({ x: canvasX, y: canvasY });
                 redrawTerminalScreen(hitScreen);
 
+                if (state.enlargedScreen) {
+                    restoreEnlargedScreen(state.enlargedScreen);
+                }
+                enlargeScreen(hitScreen);
+
                 const shardCount = 35;
                 const glassColor = hitScreen.userData.spec.color;
 
@@ -96,7 +101,15 @@ export function fireWeapon() {
                 }
             } else {
                 state.screenStates[key].impacts.push({ x: canvasX, y: canvasY });
-                redrawTerminalScreen(hitScreen);
+                
+                if (state.enlargedScreen === hitScreen) {
+                    restoreEnlargedScreen(hitScreen);
+                } else {
+                    if (state.enlargedScreen) {
+                        restoreEnlargedScreen(state.enlargedScreen);
+                    }
+                    enlargeScreen(hitScreen);
+                }
             }
 
             const sparkGeo = new THREE.BufferGeometry();
