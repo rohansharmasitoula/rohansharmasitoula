@@ -12,6 +12,15 @@ export function updateRaycasting() {
             state.targetableTerminal = key;
             state.interactionPrompt.classList.add('active');
             hitScreen.material.emissiveIntensity = 0.65;
+
+            const promptText = state.interactionPrompt.querySelector('.sci-prompt-text');
+            if (promptText) {
+                if (state.screenStates[key].isBroken) {
+                    promptText.innerHTML = '<span class="action-highlight">LEFT CLICK</span> TO OPEN RECORDS';
+                } else {
+                    promptText.innerHTML = '<span class="action-highlight">LEFT CLICK</span> TO SHOOT & DECRYPT';
+                }
+            }
         } else {
             state.screenMeshes.forEach(mesh => {
                 mesh.material.emissiveIntensity = 0.15;

@@ -57,17 +57,37 @@
                 </div>
                 <div class="hud-spacer"></div>
                 <div class="control-key-group">
-                    <span class="key-node">E</span>
-                    <span class="lbl-action">ACCESS TERMINAL</span>
+                    <span class="key-node"><i class="fas fa-mouse-pointer"></i></span>
+                    <span class="lbl-action">SHOOT TO DECRYPT</span>
                 </div>
             </div>
         </div>
         
         <div id="interaction-prompt">
             <div class="sci-prompt-box">
-                <div class="sci-prompt-icon animate-pulse"><i class="fas fa-bolt"></i></div>
+                <div class="sci-prompt-icon animate-pulse"><i class="fas fa-crosshairs"></i></div>
                 <div class="sci-prompt-text">
-                    <span class="action-highlight">PRESS [E]</span> TO INTERACT
+                    <span class="action-highlight">LEFT CLICK</span> TO SHOOT & DECRYPT
+                </div>
+            </div>
+        </div>
+
+        <div id="weapon-hud">
+            <div class="weapon-container" id="weapon-container">
+                <div class="weapon-body">
+                    <div class="weapon-barrel"></div>
+                    <div class="weapon-energy-core"></div>
+                </div>
+                <div class="muzzle-flash" id="muzzle-flash"></div>
+            </div>
+            <div class="weapon-stats-panel">
+                <div class="weapon-stat-row">
+                    <span class="weapon-stat-lbl">WEAPON</span>
+                    <span class="weapon-stat-val text-cyan">COBALT BLASTER v1.1</span>
+                </div>
+                <div class="weapon-stat-row">
+                    <span class="weapon-stat-lbl">ENERGY</span>
+                    <span class="weapon-stat-val text-cyan">OVERLOADED</span>
                 </div>
             </div>
         </div>
@@ -96,8 +116,8 @@
                     <p>Move Mouse</p>
                 </div>
                 <div class="guide-card">
-                    <span class="lbl-action"><i class="fas fa-bolt"></i> INTERACT</span>
-                    <p>Press [E] on screens</p>
+                    <span class="lbl-action"><i class="fas fa-crosshairs"></i> DECRYPT</span>
+                    <p>Shoot frosted screens</p>
                 </div>
             </div>
 

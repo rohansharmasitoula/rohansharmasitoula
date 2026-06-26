@@ -922,3 +922,120 @@ body, html {
     color: var(--clr-blue) !important;
     filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.6));
 }
+
+#weapon-hud {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    width: 320px;
+    height: 240px;
+    pointer-events: none;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.weapon-container {
+    position: relative;
+    width: 200px;
+    height: 180px;
+    transform-origin: bottom right;
+    transition: transform 0.1s ease-out;
+}
+
+.weapon-body {
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+    width: 180px;
+    height: 120px;
+    background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+    border: 1px solid rgba(45, 212, 191, 0.4);
+    box-shadow: 0 0 25px rgba(45, 212, 191, 0.15);
+    clip-path: polygon(30% 0%, 100% 10%, 100% 100%, 0% 100%, 0% 50%);
+    border-radius: 4px;
+}
+
+.weapon-barrel {
+    position: absolute;
+    top: 25px;
+    left: -20px;
+    width: 60px;
+    height: 20px;
+    background: #374151;
+    border: 1px solid rgba(45, 212, 191, 0.6);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(45, 212, 191, 0.3);
+}
+
+.weapon-energy-core {
+    position: absolute;
+    top: 35px;
+    right: 40px;
+    width: 40px;
+    height: 8px;
+    background: #2dd4bf;
+    box-shadow: 0 0 15px #2dd4bf;
+    border-radius: 2px;
+    animation: core-pulse 1.5s infinite alternate;
+}
+
+.muzzle-flash {
+    position: absolute;
+    top: 15px;
+    left: -60px;
+    width: 60px;
+    height: 40px;
+    background: radial-gradient(circle, #ffffff 10%, #2dd4bf 40%, rgba(45, 212, 191, 0) 70%);
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.weapon-stats-panel {
+    background: rgba(9, 11, 28, 0.9);
+    border: 1px solid rgba(45, 212, 191, 0.3);
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 160px;
+    margin-right: 20px;
+    margin-bottom: 5px;
+}
+
+.weapon-stat-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weapon-stat-lbl {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.weapon-stat-val {
+    font-weight: 800;
+}
+
+@keyframes core-pulse {
+    0% { opacity: 0.6; box-shadow: 0 0 5px #2dd4bf; }
+    100% { opacity: 1; box-shadow: 0 0 20px #2dd4bf; }
+}
+
+@keyframes fire-recoil {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    15% { transform: translate(15px, -15px) rotate(-10deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes flash-burst {
+    0% { opacity: 1; transform: scale(1.5); }
+    100% { opacity: 0; transform: scale(0.5); }
+}

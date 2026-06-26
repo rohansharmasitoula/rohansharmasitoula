@@ -1,6 +1,6 @@
 import { state } from './state.js';
-import { openInspectionTerminal } from './openInspectionTerminal.js';
 import { closeInspectionTerminal } from './closeInspectionTerminal.js';
+import { fireWeapon } from './fireWeapon.js';
 
 export function setupControls() {
     state.playButton.addEventListener('click', () => {
@@ -38,13 +38,16 @@ export function setupControls() {
 
     window.addEventListener('keydown', (e) => {
         state.keysPressed[e.code] = true;
-        if (e.code === 'KeyE' && state.targetableTerminal && state.isLocked) {
-            openInspectionTerminal(state.targetableTerminal);
-        }
     });
 
     window.addEventListener('keyup', (e) => {
         state.keysPressed[e.code] = false;
+    });
+
+    window.addEventListener('click', () => {
+        if (state.isLocked && !state.isModalOpen) {
+            fireWeapon();
+        }
     });
 
     state.closeModal.addEventListener('click', closeInspectionTerminal);

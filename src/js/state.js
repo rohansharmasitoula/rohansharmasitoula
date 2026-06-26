@@ -32,5 +32,8 @@ export const state = {
     detailModal: null,
     closeModal: null,
     modalTitle: null,
-    modalBody: null
+    modalBody: null,
+    screenStates: {},
+    laserBeams: [],
+    particleSystems: []
 };
