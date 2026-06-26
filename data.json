@@ -188,13 +188,13 @@
       },
       {
         "label": "Email Address",
-        "address": "TCP :25 [sitoularohansharma@gmail.com]",
+        "address": "sitoularohansharma@gmail.com",
         "url": "mailto:sitoularohansharma@gmail.com",
         "icon": "fas fa-envelope"
       },
       {
-        "label": "NLP Research Paper",
-        "address": "TCP :80 [jscdm/article/view/17843]",
+        "label": "Research Paper",
+        "address": "jscdm/article/view/17843",
         "url": "https://publisher.uthm.edu.my/ojs/index.php/jscdm/article/view/17843",
         "icon": "fas fa-book"
       }

@@ -2,6 +2,7 @@ import { state } from './state.js';
 import { init3D } from './init3D.js';
 import { setupControls } from './setupControls.js';
 import { animate } from './animate.js';
+import { redrawTerminalScreen } from './createTerminalScreen.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch('data.json');
@@ -17,6 +18,33 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     state.profilePicImage = new Image();
     state.profilePicImage.src = 'assets/profile_pic.jpg';
+    state.profilePicImage.onload = () => {
+        state.screenMeshes.forEach(mesh => {
+            if (mesh.userData.terminalKey === 'contacts') {
+                redrawTerminalScreen(mesh);
+            }
+        });
+    };
+
+    state.championAwardImage = new Image();
+    state.championAwardImage.src = 'assets/alvy_ai_proctor_post.jpg';
+    state.championAwardImage.onload = () => {
+        state.screenMeshes.forEach(mesh => {
+            if (mesh.userData.terminalKey === 'achievements') {
+                redrawTerminalScreen(mesh);
+            }
+        });
+    };
+
+    state.blocknotePostImage = new Image();
+    state.blocknotePostImage.src = 'assets/blocknote_py_post.jpg';
+    state.blocknotePostImage.onload = () => {
+        state.screenMeshes.forEach(mesh => {
+            if (mesh.userData.terminalKey === 'achievements') {
+                redrawTerminalScreen(mesh);
+            }
+        });
+    };
 
     init3D();
     setupControls();

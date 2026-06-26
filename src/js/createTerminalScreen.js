@@ -249,9 +249,23 @@ export function redrawTerminalScreen(screenMesh) {
 
                 ctx.fillStyle = '#e2e8f0';
                 ctx.font = "20px 'Outfit', sans-serif";
-                itemY = wrapText(ctx, item.description, 70, itemY + 30, 900, 24);
+                itemY = wrapText(ctx, item.description, 70, itemY + 30, 500, 24);
                 itemY += 35;
             });
+
+            if (state.championAwardImage && state.championAwardImage.complete) {
+                ctx.drawImage(state.championAwardImage, 600, 140, 370, 250);
+                ctx.lineWidth = 4;
+                ctx.strokeStyle = spec.color;
+                ctx.strokeRect(600, 140, 370, 250);
+            }
+
+            if (state.blocknotePostImage && state.blocknotePostImage.complete) {
+                ctx.drawImage(state.blocknotePostImage, 600, 420, 370, 250);
+                ctx.lineWidth = 4;
+                ctx.strokeStyle = spec.color;
+                ctx.strokeRect(600, 420, 370, 250);
+            }
         } else if (key === 'contacts') {
             if (state.profilePicImage && state.profilePicImage.complete) {
                 ctx.save();

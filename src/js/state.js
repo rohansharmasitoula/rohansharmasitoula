@@ -43,5 +43,7 @@ export const state = {
     swayY: 0,
     targetSwayX: 0,
     targetSwayY: 0,
-    profilePicImage: null
+    profilePicImage: null,
+    championAwardImage: null,
+    blocknotePostImage: null
 };
