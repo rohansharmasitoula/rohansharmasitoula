@@ -191,12 +191,6 @@
         "address": "sitoularohansharma@gmail.com",
         "url": "mailto:sitoularohansharma@gmail.com",
         "icon": "fas fa-envelope"
-      },
-      {
-        "label": "Research Paper",
-        "address": "jscdm/article/view/17843",
-        "url": "https://publisher.uthm.edu.my/ojs/index.php/jscdm/article/view/17843",
-        "icon": "fas fa-book"
       }
     ]
   }
