@@ -926,7 +926,7 @@ body, html {
 #weapon-hud {
     position: absolute;
     bottom: -15px;
-    left: 55%;
+    left: 50%;
     transform: translateX(-50%);
     width: 450px;
     height: 420px;
@@ -965,13 +965,14 @@ body, html {
 
 .muzzle-flash {
     position: absolute;
-    top: 155px;
-    left: 80px;
+    top: 10px;
+    left: 50%;
     width: 160px;
     height: 160px;
     background: radial-gradient(circle, #ffffff 10%, #2dd4bf 40%, rgba(45, 212, 191, 0) 75%);
     opacity: 0;
-    transform: scale(0.5);
+    transform: translateX(-50%) scale(0.5);
+    transform-origin: center center;
     pointer-events: none;
     z-index: 10;
 }
@@ -1013,12 +1014,12 @@ body, html {
 }
 
 @keyframes fire-recoil {
-    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-    10% { transform: translate(0, 30px) scale(0.93) rotate(3deg); }
-    100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    0% { transform: translate(0, 0) scale(1); }
+    10% { transform: translate(0, 40px) scale(0.92); }
+    100% { transform: translate(0, 0) scale(1); }
 }
 
 @keyframes flash-burst {
-    0% { opacity: 1; transform: scale(1.4) rotate(45deg); }
-    100% { opacity: 0; transform: scale(0.6) rotate(135deg); }
+    0% { opacity: 1; transform: translateX(-50%) scale(1.4) rotate(45deg); }
+    100% { opacity: 0; transform: translateX(-50%) scale(0.6) rotate(135deg); }
 }
