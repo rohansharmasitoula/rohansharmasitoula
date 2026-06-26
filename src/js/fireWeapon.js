@@ -1,6 +1,5 @@
 import { state } from './state.js';
 import { redrawTerminalScreen } from './createTerminalScreen.js';
-import { openInspectionTerminal } from './openInspectionTerminal.js';
 
 export function fireWeapon() {
     const weaponContainer = document.getElementById('weapon-container');
@@ -98,7 +97,6 @@ export function fireWeapon() {
             } else {
                 state.screenStates[key].impacts.push({ x: canvasX, y: canvasY });
                 redrawTerminalScreen(hitScreen);
-                openInspectionTerminal(key);
             }
 
             const sparkGeo = new THREE.BufferGeometry();

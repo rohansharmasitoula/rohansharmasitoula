@@ -93,6 +93,19 @@
                 </div>
             </div>
         </div>
+
+        <div id="mobile-controls">
+            <button id="btn-mobile-pause"><i class="fas fa-pause"></i></button>
+            <div id="joystick-container">
+                <div id="joystick-base">
+                    <div id="joystick-handle"></div>
+                </div>
+            </div>
+            <div id="mobile-action-buttons">
+                <button id="btn-mobile-zoom" class="mobile-action-btn"><i class="fas fa-search-plus"></i></button>
+                <button id="btn-mobile-shoot" class="mobile-action-btn"><i class="fas fa-crosshairs"></i></button>
+            </div>
+        </div>
     </div>
 
     <div id="blocker">
@@ -127,21 +140,7 @@
         </div>
     </div>
 
-    <div id="detail-modal" class="glass">
-        <button id="close-modal"><i class="fas fa-times"></i></button>
-        
-        <div class="modal-content">
-            <div class="modal-sci-header">
-                <div class="header-indicator"></div>
-                <div class="header-text-group">
-                    <span class="modal-meta-lbl">ARCHIVE LOG FILE</span>
-                    <h2 id="modal-title">INFORMATION MODULE</h2>
-                </div>
-            </div>
-            <div class="modal-body" id="modal-body">
-            </div>
-        </div>
-    </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script type="module" src="src/js/main.js?v=1.1"></script>

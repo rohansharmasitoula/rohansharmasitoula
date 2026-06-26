@@ -5,10 +5,10 @@ export function updateMovement(delta) {
         state.velocity.x -= state.velocity.x * state.friction * delta;
         state.velocity.z -= state.velocity.z * state.friction * delta;
 
-        state.moveForward = !!(state.keysPressed['KeyW'] || state.keysPressed['ArrowUp']);
-        state.moveBackward = !!(state.keysPressed['KeyS'] || state.keysPressed['ArrowDown']);
-        state.moveLeft = !!(state.keysPressed['KeyA'] || state.keysPressed['ArrowLeft']);
-        state.moveRight = !!(state.keysPressed['KeyD'] || state.keysPressed['ArrowRight']);
+        state.moveForward = !!(state.keysPressed['KeyW'] || state.keysPressed['ArrowUp'] || state.touchMoveForward);
+        state.moveBackward = !!(state.keysPressed['KeyS'] || state.keysPressed['ArrowDown'] || state.touchMoveBackward);
+        state.moveLeft = !!(state.keysPressed['KeyA'] || state.keysPressed['ArrowLeft'] || state.touchMoveLeft);
+        state.moveRight = !!(state.keysPressed['KeyD'] || state.keysPressed['ArrowRight'] || state.touchMoveRight);
 
         state.direction.z = Number(state.moveForward) - Number(state.moveBackward);
         state.direction.x = Number(state.moveRight) - Number(state.moveLeft);

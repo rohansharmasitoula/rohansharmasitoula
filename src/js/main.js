@@ -14,10 +14,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     state.scoreDisplay = document.getElementById('score-display');
     state.weaponBobContainer = document.getElementById('weapon-bob-container');
     state.interactionPrompt = document.getElementById('interaction-prompt');
-    state.detailModal = document.getElementById('detail-modal');
-    state.closeModal = document.getElementById('close-modal');
-    state.modalTitle = document.getElementById('modal-title');
-    state.modalBody = document.getElementById('modal-body');
+
+    state.profilePicImage = new Image();
+    state.profilePicImage.src = 'assets/profile_pic.jpg';
 
     init3D();
     setupControls();

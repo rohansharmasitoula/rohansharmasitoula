@@ -16,7 +16,7 @@ export function updateRaycasting() {
             const promptText = state.interactionPrompt.querySelector('.sci-prompt-text');
             if (promptText) {
                 if (state.screenStates[key].isBroken) {
-                    promptText.innerHTML = '<span class="action-highlight">LEFT CLICK</span> TO OPEN RECORDS';
+                    promptText.innerHTML = '<span class="action-highlight">LEFT CLICK</span> TO SHOOT';
                 } else {
                     promptText.innerHTML = '<span class="action-highlight">LEFT CLICK</span> TO SHOOT & DECRYPT';
                 }
