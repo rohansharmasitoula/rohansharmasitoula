@@ -1,4 +1,5 @@
 import { state } from './state.js';
+import { redrawTerminalScreen } from './createTerminalScreen.js';
 
 export function updateFX(delta) {
     const activeLasers = [];
@@ -55,4 +56,28 @@ export function updateFX(delta) {
         }
     });
     state.particleSystems = activeParticles;
+
+    state.screenMeshes.forEach(mesh => {
+        const key = mesh.userData.terminalKey;
+        const screenState = state.screenStates[key];
+        if (screenState && screenState.isBroken) {
+            let needsRedraw = false;
+            if (screenState.shootAnimProgress > 0.0) {
+                screenState.shootAnimProgress -= delta * 2.0;
+                if (screenState.shootAnimProgress < 0.0) {
+                    screenState.shootAnimProgress = 0.0;
+                }
+                needsRedraw = true;
+            } else if (screenState.revealProgress < 1.0) {
+                screenState.revealProgress += delta * 1.5;
+                if (screenState.revealProgress > 1.0) {
+                    screenState.revealProgress = 1.0;
+                }
+                needsRedraw = true;
+            }
+            if (needsRedraw) {
+                redrawTerminalScreen(mesh);
+            }
+        }
+    });
 }

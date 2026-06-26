@@ -1,5 +1,5 @@
 import { state } from './state.js';
-import { redrawTerminalScreen, enlargeScreen, restoreEnlargedScreen } from './createTerminalScreen.js';
+import { redrawTerminalScreen } from './createTerminalScreen.js';
 
 export function fireWeapon() {
     const weaponContainer = document.getElementById('weapon-container');
@@ -54,13 +54,10 @@ export function fireWeapon() {
 
             if (!isBroken) {
                 state.screenStates[key].isBroken = true;
+                state.screenStates[key].revealProgress = 0.0;
+                state.screenStates[key].shootAnimProgress = 1.0;
                 state.screenStates[key].impacts.push({ x: canvasX, y: canvasY });
                 redrawTerminalScreen(hitScreen);
-
-                if (state.enlargedScreen) {
-                    restoreEnlargedScreen(state.enlargedScreen);
-                }
-                enlargeScreen(hitScreen);
 
                 const shardCount = 35;
                 const glassColor = hitScreen.userData.spec.color;
@@ -100,16 +97,10 @@ export function fireWeapon() {
                     });
                 }
             } else {
+                state.screenStates[key].revealProgress = 0.0;
+                state.screenStates[key].shootAnimProgress = 1.0;
                 state.screenStates[key].impacts.push({ x: canvasX, y: canvasY });
-                
-                if (state.enlargedScreen === hitScreen) {
-                    restoreEnlargedScreen(hitScreen);
-                } else {
-                    if (state.enlargedScreen) {
-                        restoreEnlargedScreen(state.enlargedScreen);
-                    }
-                    enlargeScreen(hitScreen);
-                }
+                redrawTerminalScreen(hitScreen);
             }
 
             const sparkGeo = new THREE.BufferGeometry();

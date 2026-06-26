@@ -65,7 +65,14 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
         }
     });
     ctx.fillText(line, x, curY);
-    return curY + lineHeight;
+    const result = curY + lineHeight;
+    return result;
+}
+
+function typewriterText(text, progress) {
+    const len = Math.floor(text.length * progress);
+    const result = text.substring(0, len);
+    return result;
 }
 
 export function redrawTerminalScreen(screenMesh) {
@@ -74,6 +81,7 @@ export function redrawTerminalScreen(screenMesh) {
     const spec = screenMesh.userData.spec;
     const key = spec.key;
     const isBroken = state.screenStates[key]?.isBroken;
+    const shootAnim = state.screenStates[key]?.shootAnimProgress || 0.0;
 
     if (!isBroken) {
         ctx.fillStyle = '#0a0d1d';
@@ -109,8 +117,44 @@ export function redrawTerminalScreen(screenMesh) {
         ctx.stroke();
         ctx.fillStyle = spec.color;
         ctx.fill();
+    } else if (shootAnim > 0.0) {
+        const flashVal = Math.floor(shootAnim * 15) % 2;
+        ctx.fillStyle = flashVal === 0 ? '#0a0d1d' : 'rgba(239, 68, 68, 0.12)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = spec.color;
+        ctx.lineWidth = 14;
+        ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
+        ctx.fillRect(20, 20, canvas.width - 40, canvas.height - 40);
+        ctx.fillStyle = '#ef4444';
+        ctx.font = "bold 44px 'Orbitron', Arial, sans-serif";
+        ctx.textAlign = 'center';
+        const shakeX = (Math.random() - 0.5) * 12;
+        const shakeY = (Math.random() - 0.5) * 12;
+        ctx.fillText("SECURITY OVERRIDE DETECTED", canvas.width / 2 + shakeX, 240 + shakeY);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = "bold 26px 'Orbitron', Arial, sans-serif";
+        ctx.fillText("DECRYPTING DATA CORE...", canvas.width / 2, 320);
+        const barW = 500;
+        const barH = 32;
+        const barX = canvas.width / 2 - barW / 2;
+        const barY = 380;
+        ctx.strokeStyle = spec.color;
+        ctx.lineWidth = 4;
+        ctx.strokeRect(barX, barY, barW, barH);
+        const progressRatio = Math.max(0.0, Math.min(1.0, 1.0 - shootAnim));
+        ctx.fillStyle = spec.color;
+        ctx.fillRect(barX + 6, barY + 6, Math.max(0, (barW - 12) * progressRatio), barH - 12);
+        ctx.fillStyle = spec.color;
+        for (let i = 0; i < 4; i++) {
+            const gX = Math.random() * (canvas.width - 300) + 150;
+            const gY = Math.random() * (canvas.height - 200) + 100;
+            const gW = Math.random() * 200 + 40;
+            const gH = Math.random() * 8 + 2;
+            ctx.fillRect(gX, gY, gW, gH);
+        }
     } else {
-        ctx.fillStyle = '#050712';
+        ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.strokeStyle = spec.color;
         ctx.lineWidth = 14;
@@ -118,10 +162,12 @@ export function redrawTerminalScreen(screenMesh) {
         ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
         ctx.fillRect(20, 20, canvas.width - 40, canvas.height - 40);
         
+        const progress = state.screenStates[key]?.revealProgress || 0.0;
+
         ctx.fillStyle = spec.color;
         ctx.font = "bold 32px 'Orbitron', Arial, sans-serif";
         ctx.textAlign = 'left';
-        ctx.fillText(spec.title.toUpperCase(), 50, 75);
+        ctx.fillText(typewriterText(spec.title.toUpperCase(), progress), 50, 75);
 
         ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
         ctx.fillRect(50, 95, canvas.width - 100, 2);
@@ -131,7 +177,7 @@ export function redrawTerminalScreen(screenMesh) {
         if (key === 'skills') {
             ctx.fillStyle = '#ffffff';
             ctx.font = "20px 'Outfit', sans-serif";
-            wrapText(ctx, rawData.description, 50, 135, 920, 28);
+            wrapText(ctx, typewriterText(rawData.description, progress), 50, 135, 920, 28);
 
             let colY = 220;
             rawData.categories.forEach((cat, idx) => {
@@ -140,12 +186,12 @@ export function redrawTerminalScreen(screenMesh) {
 
                 ctx.fillStyle = spec.color;
                 ctx.font = "bold 24px 'Orbitron', Arial, sans-serif";
-                ctx.fillText(cat.name.toUpperCase(), colX, rowY);
+                ctx.fillText(typewriterText(cat.name.toUpperCase(), progress), colX, rowY);
 
                 ctx.fillStyle = '#94a3b8';
                 ctx.font = "20px 'Outfit', sans-serif";
                 cat.skills.forEach((skill, sIdx) => {
-                    ctx.fillText(`· ${skill}`, colX + 15, rowY + 35 + sIdx * 30);
+                    ctx.fillText(typewriterText(`· ${skill}`, progress), colX + 15, rowY + 35 + sIdx * 30);
                 });
             });
         } else if (key === 'work') {
@@ -154,18 +200,18 @@ export function redrawTerminalScreen(screenMesh) {
                 if (idx < 3) {
                     ctx.fillStyle = '#ffffff';
                     ctx.font = "bold 24px 'Orbitron', Arial, sans-serif";
-                    ctx.fillText(role.title.toUpperCase(), 50, itemY);
+                    ctx.fillText(typewriterText(role.title.toUpperCase(), progress), 50, itemY);
 
                     ctx.fillStyle = spec.color;
                     ctx.font = "bold 18px 'Orbitron', Arial, sans-serif";
                     const durW = ctx.measureText(role.duration).width;
-                    ctx.fillText(role.duration.toUpperCase(), canvas.width - 50 - durW, itemY);
+                    ctx.fillText(typewriterText(role.duration.toUpperCase(), progress), canvas.width - 50 - durW, itemY);
 
                     ctx.fillStyle = '#94a3b8';
                     ctx.font = "18px 'Outfit', sans-serif";
                     role.highlights.forEach((high, hIdx) => {
                         if (hIdx < 2) {
-                            itemY = wrapText(ctx, `- ${high}`, 70, itemY + 30, 880, 24);
+                            itemY = wrapText(ctx, typewriterText(`- ${high}`, progress), 70, itemY + 30, 880, 24);
                         }
                     });
                     itemY += 35;
@@ -176,16 +222,16 @@ export function redrawTerminalScreen(screenMesh) {
             rawData.contributions.forEach(project => {
                 ctx.fillStyle = '#ffffff';
                 ctx.font = "bold 32px 'Orbitron', Arial, sans-serif";
-                ctx.fillText(project.title.toUpperCase(), 50, itemY);
+                ctx.fillText(typewriterText(project.title.toUpperCase(), progress), 50, itemY);
 
                 ctx.fillStyle = spec.color;
                 ctx.font = "bold 20px 'Orbitron', Arial, sans-serif";
-                ctx.fillText(project.subtitle.toUpperCase(), 50, itemY + 35);
+                ctx.fillText(typewriterText(project.subtitle.toUpperCase(), progress), 50, itemY + 35);
 
                 ctx.fillStyle = '#e2e8f0';
                 ctx.font = "22px 'Outfit', sans-serif";
-                itemY = wrapText(ctx, project.description, 50, itemY + 80, 920, 28);
-                itemY = wrapText(ctx, project.subdescription, 50, itemY + 15, 920, 28);
+                itemY = wrapText(ctx, typewriterText(project.description, progress), 50, itemY + 80, 920, 28);
+                itemY = wrapText(ctx, typewriterText(project.subdescription, progress), 50, itemY + 15, 920, 28);
 
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
                 ctx.strokeStyle = 'rgba(45, 212, 191, 0.2)';
@@ -200,11 +246,11 @@ export function redrawTerminalScreen(screenMesh) {
                     ctx.fillStyle = spec.color;
                     ctx.font = "bold 44px 'Orbitron', Arial, sans-serif";
                     ctx.textAlign = 'center';
-                    ctx.fillText(stat.value, boxX + 210, boxY + 65);
+                    ctx.fillText(typewriterText(stat.value, progress), boxX + 210, boxY + 65);
 
                     ctx.fillStyle = '#94a3b8';
                     ctx.font = "18px 'Orbitron', Arial, sans-serif";
-                    ctx.fillText(stat.label.toUpperCase(), boxX + 210, boxY + 110);
+                    ctx.fillText(typewriterText(stat.label.toUpperCase(), progress), boxX + 210, boxY + 110);
                     ctx.textAlign = 'left';
                 });
             });
@@ -213,31 +259,31 @@ export function redrawTerminalScreen(screenMesh) {
             rawData.publications.forEach(pub => {
                 ctx.fillStyle = spec.color;
                 ctx.font = "bold 24px 'Orbitron', Arial, sans-serif";
-                ctx.fillText(pub.title.toUpperCase(), 50, itemY);
+                ctx.fillText(typewriterText(pub.title.toUpperCase(), progress), 50, itemY);
 
                 ctx.fillStyle = '#ffffff';
                 ctx.font = "22px 'Outfit', sans-serif";
-                ctx.fillText(pub.paper, 50, itemY + 35);
+                ctx.fillText(typewriterText(pub.paper, progress), 50, itemY + 35);
 
                 ctx.fillStyle = '#94a3b8';
                 ctx.font = "20px 'Outfit', sans-serif";
-                itemY = wrapText(ctx, pub.description, 50, itemY + 75, 920, 26);
+                itemY = wrapText(ctx, typewriterText(pub.description, progress), 50, itemY + 75, 920, 26);
                 itemY += 40;
             });
 
             rawData.degrees.forEach(deg => {
                 ctx.fillStyle = '#ffffff';
                 ctx.font = "bold 24px 'Orbitron', Arial, sans-serif";
-                ctx.fillText(deg.name.toUpperCase(), 50, itemY);
+                ctx.fillText(typewriterText(deg.name.toUpperCase(), progress), 50, itemY);
 
                 ctx.fillStyle = spec.color;
                 ctx.font = "bold 20px 'Orbitron', Arial, sans-serif";
                 const durW = ctx.measureText(deg.duration).width;
-                ctx.fillText(deg.duration.toUpperCase(), canvas.width - 50 - durW, itemY);
+                ctx.fillText(typewriterText(deg.duration.toUpperCase(), progress), canvas.width - 50 - durW, itemY);
 
                 ctx.fillStyle = '#94a3b8';
                 ctx.font = "22px 'Outfit', sans-serif";
-                ctx.fillText(`${deg.institution}  ·  ${deg.grade}`, 50, itemY + 35);
+                ctx.fillText(typewriterText(`${deg.institution}  ·  ${deg.grade}`, progress), 50, itemY + 35);
                 itemY += 80;
             });
         } else if (key === 'achievements') {
@@ -245,11 +291,11 @@ export function redrawTerminalScreen(screenMesh) {
             rawData.items.forEach((item, idx) => {
                 ctx.fillStyle = spec.color;
                 ctx.font = "bold 22px 'Orbitron', Arial, sans-serif";
-                ctx.fillText(`[0${idx+1}] ${item.title.toUpperCase()}`, 50, itemY);
+                ctx.fillText(typewriterText(`[0${idx+1}] ${item.title.toUpperCase()}`, progress), 50, itemY);
 
                 ctx.fillStyle = '#e2e8f0';
                 ctx.font = "20px 'Outfit', sans-serif";
-                itemY = wrapText(ctx, item.description, 70, itemY + 30, 500, 24);
+                itemY = wrapText(ctx, typewriterText(item.description, progress), 70, itemY + 30, 500, 24);
                 itemY += 35;
             });
 
@@ -262,7 +308,7 @@ export function redrawTerminalScreen(screenMesh) {
 
             coords.forEach((coord, idx) => {
                 const img = state.achievementImages[idx];
-                if (img && img.complete) {
+                if (img && img.complete && progress > 0.8) {
                     ctx.drawImage(img, coord.x, coord.y, coord.w, coord.h);
                     ctx.lineWidth = 3;
                     ctx.strokeStyle = spec.color;
@@ -270,7 +316,7 @@ export function redrawTerminalScreen(screenMesh) {
                 }
             });
         } else if (key === 'contacts') {
-            if (state.profilePicImage && state.profilePicImage.complete) {
+            if (state.profilePicImage && state.profilePicImage.complete && progress > 0.8) {
                 ctx.save();
                 ctx.beginPath();
                 ctx.arc(150, 240, 90, 0, Math.PI * 2);
@@ -288,16 +334,16 @@ export function redrawTerminalScreen(screenMesh) {
 
             ctx.fillStyle = '#ffffff';
             ctx.font = "bold 38px 'Orbitron', Arial, sans-serif";
-            ctx.fillText(rawData.name.toUpperCase(), 280, 195);
+            ctx.fillText(typewriterText(rawData.name.toUpperCase(), progress), 280, 195);
 
             ctx.fillStyle = spec.color;
             ctx.font = "bold 24px 'Orbitron', Arial, sans-serif";
-            ctx.fillText(rawData.role.toUpperCase(), 280, 240);
+            ctx.fillText(typewriterText(rawData.role.toUpperCase(), progress), 280, 240);
 
             ctx.fillStyle = '#94a3b8';
             ctx.font = "22px 'Outfit', sans-serif";
-            ctx.fillText(`${rawData.location}  ·  ${rawData.phone}`, 280, 280);
-            ctx.fillText(rawData.email, 280, 315);
+            ctx.fillText(typewriterText(`${rawData.location}  ·  ${rawData.phone}`, progress), 280, 280);
+            ctx.fillText(typewriterText(rawData.email, progress), 280, 315);
 
             let gridY = 390;
             rawData.links.forEach((link, lIdx) => {
@@ -311,11 +357,11 @@ export function redrawTerminalScreen(screenMesh) {
 
                 ctx.fillStyle = '#ffffff';
                 ctx.font = "bold 22px 'Orbitron', Arial, sans-serif";
-                ctx.fillText(link.label.toUpperCase(), colX + 25, rowY + 45);
+                ctx.fillText(typewriterText(link.label.toUpperCase(), progress), colX + 25, rowY + 45);
 
                 ctx.fillStyle = spec.color;
                 ctx.font = "18px 'Outfit', sans-serif";
-                ctx.fillText(link.address, colX + 25, rowY + 85);
+                ctx.fillText(typewriterText(link.address, progress), colX + 25, rowY + 85);
             });
         }
 
@@ -324,13 +370,6 @@ export function redrawTerminalScreen(screenMesh) {
             screenState.impacts.forEach(impact => {
                 drawCracks(ctx, impact.x, impact.y);
             });
-        }
-
-        if (state.enlargedScreen === screenMesh) {
-            ctx.fillStyle = '#f87171';
-            ctx.font = "bold 24px 'Orbitron', Arial, sans-serif";
-            ctx.textAlign = 'center';
-            ctx.fillText("SHOOT SCREEN AGAIN TO CLOSE ENLARGED VIEW", canvas.width / 2, canvas.height - 40);
         }
     }
     screenMesh.userData.texture.needsUpdate = true;
@@ -341,7 +380,7 @@ export function createTerminalScreen(spec) {
     const screenH = 4.5;
 
     if (!state.screenStates[spec.key]) {
-        state.screenStates[spec.key] = { isBroken: false, impacts: [] };
+        state.screenStates[spec.key] = { isBroken: false, impacts: [], revealProgress: 0.0, shootAnimProgress: 0.0 };
     }
 
     const canvas = document.createElement('canvas');
@@ -356,8 +395,7 @@ export function createTerminalScreen(spec) {
         emissive: new THREE.Color(spec.color),
         emissiveIntensity: 0.15,
         roughness: 0.3,
-        metalness: 0.8,
-        side: THREE.DoubleSide
+        metalness: 0.8
     });
     const screenMesh = new THREE.Mesh(screenGeo, screenMat);
     screenMesh.position.set(spec.x, 3.5, spec.z);
@@ -385,29 +423,4 @@ export function createTerminalScreen(spec) {
     frameMesh.position.copy(screenMesh.position).add(offsetDir);
     frameMesh.rotation.y = spec.rotY;
     state.scene.add(frameMesh);
-}
-
-export function enlargeScreen(screenMesh) {
-    state.enlargedScreen = screenMesh;
-    screenMesh.userData.originalPosition = screenMesh.position.clone();
-    screenMesh.userData.originalRotation = screenMesh.rotation.clone();
-    screenMesh.userData.originalGeometry = screenMesh.geometry;
-
-    const curveGeo = new THREE.CylinderGeometry(5, 5, 3.75, 32, 1, true, Math.PI * 0.85, Math.PI * 0.3);
-    screenMesh.geometry = curveGeo;
-
-    const cameraDirection = new THREE.Vector3(0, 0, -1).applyQuaternion(state.camera.quaternion);
-    const targetPos = state.camera.position.clone().add(cameraDirection.multiplyScalar(4.0));
-    screenMesh.position.copy(targetPos);
-    screenMesh.lookAt(state.camera.position);
-
-    redrawTerminalScreen(screenMesh);
-}
-
-export function restoreEnlargedScreen(screenMesh) {
-    state.enlargedScreen = null;
-    screenMesh.geometry = screenMesh.userData.originalGeometry;
-    screenMesh.position.copy(screenMesh.userData.originalPosition);
-    screenMesh.rotation.copy(screenMesh.userData.originalRotation);
-    redrawTerminalScreen(screenMesh);
 }

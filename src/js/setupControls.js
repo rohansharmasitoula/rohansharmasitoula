@@ -1,6 +1,5 @@
 import { state } from './state.js';
 import { fireWeapon } from './fireWeapon.js';
-import { restoreEnlargedScreen } from './createTerminalScreen.js';
 
 let joystickTouchId = null;
 let joystickStartX = 0;
@@ -36,9 +35,6 @@ export function setupControls() {
         } else {
             state.isLocked = false;
             state.isZoomed = false;
-            if (state.enlargedScreen) {
-                restoreEnlargedScreen(state.enlargedScreen);
-            }
             state.blocker.style.display = 'flex';
             setTimeout(() => state.blocker.style.opacity = 1, 10);
             state.interactionPrompt.classList.remove('active');
@@ -214,9 +210,6 @@ export function setupControls() {
         btnPause.addEventListener('click', () => {
             state.isLocked = false;
             state.isZoomed = false;
-            if (state.enlargedScreen) {
-                restoreEnlargedScreen(state.enlargedScreen);
-            }
             state.blocker.style.display = 'flex';
             setTimeout(() => {
                 state.blocker.style.opacity = 1;
