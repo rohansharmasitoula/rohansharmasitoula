@@ -20,10 +20,10 @@ export function fireWeapon() {
     }
 
     if (weaponImg) {
-        weaponImg.src = 'assets/fps_deagle_fire.png';
+        weaponImg.style.filter = 'brightness(1.8) contrast(1.25) drop-shadow(0 0 35px rgba(45, 212, 191, 0.65))';
         setTimeout(() => {
             if (weaponImg) {
-                weaponImg.src = 'assets/fps_deagle_weapon.png';
+                weaponImg.style.filter = 'brightness(1.15) contrast(1.15) drop-shadow(0 0 25px rgba(45, 212, 191, 0.2))';
             }
         }, 120);
     }

@@ -965,8 +965,8 @@ body, html {
 
 .muzzle-flash {
     position: absolute;
-    top: 125px;
-    left: 20px;
+    top: 155px;
+    left: 80px;
     width: 160px;
     height: 160px;
     background: radial-gradient(circle, #ffffff 10%, #2dd4bf 40%, rgba(45, 212, 191, 0) 75%);
