@@ -253,19 +253,23 @@ export function redrawTerminalScreen(screenMesh) {
                 itemY += 35;
             });
 
-            if (state.championAwardImage && state.championAwardImage.complete) {
-                ctx.drawImage(state.championAwardImage, 600, 140, 370, 250);
-                ctx.lineWidth = 4;
-                ctx.strokeStyle = spec.color;
-                ctx.strokeRect(600, 140, 370, 250);
-            }
+            const coords = [
+                { x: 580, y: 140, w: 185, h: 135 },
+                { x: 785, y: 140, w: 185, h: 135 },
+                { x: 580, y: 295, w: 185, h: 135 },
+                { x: 785, y: 295, w: 185, h: 135 },
+                { x: 580, y: 450, w: 390, h: 230 }
+            ];
 
-            if (state.blocknotePostImage && state.blocknotePostImage.complete) {
-                ctx.drawImage(state.blocknotePostImage, 600, 420, 370, 250);
-                ctx.lineWidth = 4;
-                ctx.strokeStyle = spec.color;
-                ctx.strokeRect(600, 420, 370, 250);
-            }
+            coords.forEach((coord, idx) => {
+                const img = state.achievementImages[idx];
+                if (img && img.complete) {
+                    ctx.drawImage(img, coord.x, coord.y, coord.w, coord.h);
+                    ctx.lineWidth = 3;
+                    ctx.strokeStyle = spec.color;
+                    ctx.strokeRect(coord.x, coord.y, coord.w, coord.h);
+                }
+            });
         } else if (key === 'contacts') {
             if (state.profilePicImage && state.profilePicImage.complete) {
                 ctx.save();

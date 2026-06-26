@@ -26,25 +26,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     };
 
-    state.championAwardImage = new Image();
-    state.championAwardImage.src = 'assets/alvy_ai_proctor_post.jpg';
-    state.championAwardImage.onload = () => {
-        state.screenMeshes.forEach(mesh => {
-            if (mesh.userData.terminalKey === 'achievements') {
-                redrawTerminalScreen(mesh);
-            }
-        });
-    };
+    state.achievementImages = [];
+    const imageNames = [
+        'champion_award.jpg',
+        'star_performer.jpg',
+        'growth_journey.jpg',
+        'nlp_spotlight.jpg',
+        'leadership_share.jpg'
+    ];
 
-    state.blocknotePostImage = new Image();
-    state.blocknotePostImage.src = 'assets/blocknote_py_post.jpg';
-    state.blocknotePostImage.onload = () => {
-        state.screenMeshes.forEach(mesh => {
-            if (mesh.userData.terminalKey === 'achievements') {
-                redrawTerminalScreen(mesh);
-            }
-        });
-    };
+    imageNames.forEach((name, idx) => {
+        const img = new Image();
+        img.src = `assets/${name}`;
+        img.onload = () => {
+            state.screenMeshes.forEach(mesh => {
+                if (mesh.userData.terminalKey === 'achievements') {
+                    redrawTerminalScreen(mesh);
+                }
+            });
+        };
+        state.achievementImages[idx] = img;
+    });
 
     init3D();
     setupControls();
