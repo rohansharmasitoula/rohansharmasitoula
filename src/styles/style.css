@@ -33,6 +33,7 @@ body, html {
     color: var(--clr-white);
     font-family: var(--font-body);
     user-select: none;
+    touch-action: none;
 }
 
 

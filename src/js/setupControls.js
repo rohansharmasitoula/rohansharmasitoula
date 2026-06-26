@@ -100,10 +100,11 @@ export function setupControls() {
                 }
             }
         }
-    });
+    }, { passive: false });
 
     window.addEventListener('touchmove', (e) => {
         if (state.isLocked) {
+            e.preventDefault();
             for (let i = 0; i < e.changedTouches.length; i++) {
                 const touch = e.changedTouches[i];
                 if (touch.identifier === touchLookId) {
@@ -126,7 +127,7 @@ export function setupControls() {
                 }
             }
         }
-    });
+    }, { passive: false });
 
     window.addEventListener('touchend', (e) => {
         for (let i = 0; i < e.changedTouches.length; i++) {
@@ -143,6 +144,7 @@ export function setupControls() {
 
     if (joystickContainer && joystickBase && joystickHandle) {
         joystickContainer.addEventListener('touchstart', (e) => {
+            e.preventDefault();
             if (joystickTouchId === null) {
                 const touch = e.changedTouches[0];
                 joystickTouchId = touch.identifier;
@@ -150,9 +152,10 @@ export function setupControls() {
                 joystickStartX = rect.left + rect.width / 2;
                 joystickStartY = rect.top + rect.height / 2;
             }
-        });
+        }, { passive: false });
 
         joystickContainer.addEventListener('touchmove', (e) => {
+            e.preventDefault();
             for (let i = 0; i < e.changedTouches.length; i++) {
                 const touch = e.changedTouches[i];
                 if (touch.identifier === joystickTouchId) {
@@ -175,7 +178,7 @@ export function setupControls() {
                     state.touchMoveRight = normX > 0.25;
                 }
             }
-        });
+        }, { passive: false });
 
         const resetJoystick = (e) => {
             for (let i = 0; i < e.changedTouches.length; i++) {
@@ -191,8 +194,15 @@ export function setupControls() {
             }
         };
 
-        joystickContainer.addEventListener('touchend', resetJoystick);
-        joystickContainer.addEventListener('touchcancel', resetJoystick);
+        joystickContainer.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            resetJoystick(e);
+        }, { passive: false });
+
+        joystickContainer.addEventListener('touchcancel', (e) => {
+            e.preventDefault();
+            resetJoystick(e);
+        }, { passive: false });
     }
 
     const btnPause = document.getElementById('btn-mobile-pause');

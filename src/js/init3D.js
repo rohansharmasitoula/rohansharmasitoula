@@ -9,6 +9,7 @@ export function init3D() {
     state.scene.fog = new THREE.FogExp2(0x020306, 0.05);
 
     state.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 100);
+    state.camera.rotation.order = 'YXZ';
     state.camera.position.set(0, state.playerHeight, 8);
 
     state.renderer = new THREE.WebGLRenderer({ antialias: true });
