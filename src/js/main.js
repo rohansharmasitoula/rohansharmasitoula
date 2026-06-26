@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         'champion_award.jpg',
         'star_performer.jpg',
         'growth_journey.jpg',
-        'nlp_spotlight.jpg',
         'leadership_share.jpg'
     ];
 

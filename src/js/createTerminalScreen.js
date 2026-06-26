@@ -254,11 +254,10 @@ export function redrawTerminalScreen(screenMesh) {
             });
 
             const coords = [
-                { x: 580, y: 140, w: 185, h: 135 },
-                { x: 785, y: 140, w: 185, h: 135 },
-                { x: 580, y: 295, w: 185, h: 135 },
-                { x: 785, y: 295, w: 185, h: 135 },
-                { x: 580, y: 450, w: 390, h: 230 }
+                { x: 580, y: 140, w: 185, h: 240 },
+                { x: 785, y: 140, w: 185, h: 240 },
+                { x: 580, y: 410, w: 185, h: 240 },
+                { x: 785, y: 410, w: 185, h: 240 }
             ];
 
             coords.forEach((coord, idx) => {
