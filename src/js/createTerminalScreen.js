@@ -287,32 +287,40 @@ export function redrawTerminalScreen(screenMesh) {
                 itemY += 80;
             });
         } else if (key === 'achievements') {
-            let itemY = 140;
-            rawData.items.forEach((item, idx) => {
-                ctx.fillStyle = spec.color;
-                ctx.font = "bold 22px 'Orbitron', Arial, sans-serif";
-                ctx.fillText(typewriterText(`[0${idx+1}] ${item.title.toUpperCase()}`, progress), 50, itemY);
-
-                ctx.fillStyle = '#e2e8f0';
-                ctx.font = "20px 'Outfit', sans-serif";
-                itemY = wrapText(ctx, typewriterText(item.description, progress), 70, itemY + 30, 500, 24);
-                itemY += 35;
-            });
-
-            const coords = [
-                { x: 580, y: 140, w: 185, h: 240 },
-                { x: 785, y: 140, w: 185, h: 240 },
-                { x: 580, y: 410, w: 185, h: 240 },
-                { x: 785, y: 410, w: 185, h: 240 }
+            ctx.textAlign = 'left';
+            const cardW = 440;
+            const cardH = 280;
+            const positions = [
+                { x: 50, y: 130 },
+                { x: 530, y: 130 },
+                { x: 50, y: 430 },
+                { x: 530, y: 430 }
             ];
 
-            coords.forEach((coord, idx) => {
-                const img = state.achievementImages[idx];
-                if (img && img.complete && progress > 0.8) {
-                    ctx.drawImage(img, coord.x, coord.y, coord.w, coord.h);
-                    ctx.lineWidth = 3;
-                    ctx.strokeStyle = spec.color;
-                    ctx.strokeRect(coord.x, coord.y, coord.w, coord.h);
+            rawData.items.forEach((item, idx) => {
+                if (idx < 4) {
+                    const pos = positions[idx];
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.015)';
+                    ctx.fillRect(pos.x, pos.y, cardW, cardH);
+                    ctx.strokeStyle = 'rgba(251, 191, 36, 0.1)';
+                    ctx.lineWidth = 1;
+                    ctx.strokeRect(pos.x, pos.y, cardW, cardH);
+
+                    const img = state.achievementImages[idx];
+                    if (img && img.complete && progress > 0.8) {
+                        ctx.drawImage(img, pos.x + 15, pos.y + 20, 180, 240);
+                        ctx.lineWidth = 2;
+                        ctx.strokeStyle = spec.color;
+                        ctx.strokeRect(pos.x + 15, pos.y + 20, 180, 240);
+                    }
+
+                    ctx.fillStyle = spec.color;
+                    ctx.font = "bold 18px 'Orbitron', Arial, sans-serif";
+                    wrapText(ctx, typewriterText(item.title.toUpperCase(), progress), pos.x + 210, pos.y + 40, 215, 22);
+
+                    ctx.fillStyle = '#e2e8f0';
+                    ctx.font = "15px 'Outfit', sans-serif";
+                    wrapText(ctx, typewriterText(item.description, progress), pos.x + 210, pos.y + 110, 215, 20);
                 }
             });
         } else if (key === 'contacts') {
