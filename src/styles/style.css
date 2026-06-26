@@ -938,6 +938,16 @@ body, html {
     align-items: center;
 }
 
+#weapon-bob-container {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    transform-origin: bottom center;
+}
+
 .weapon-container {
     position: relative;
     width: 400px;

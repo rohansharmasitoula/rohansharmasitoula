@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     state.playButton = document.getElementById('play-button');
     state.posDisplay = document.getElementById('pos-display');
     state.scoreDisplay = document.getElementById('score-display');
+    state.weaponBobContainer = document.getElementById('weapon-bob-container');
     state.interactionPrompt = document.getElementById('interaction-prompt');
     state.detailModal = document.getElementById('detail-modal');
     state.closeModal = document.getElementById('close-modal');

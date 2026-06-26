@@ -2,6 +2,7 @@ import { state } from './state.js';
 import { updateMovement } from './updateMovement.js';
 import { updateRaycasting } from './updateRaycasting.js';
 import { updateFX } from './updateFX.js';
+import { updateWeaponBobSway } from './updateWeaponBobSway.js';
 
 export function animate() {
     requestAnimationFrame(animate);
@@ -9,5 +10,6 @@ export function animate() {
     updateMovement(delta);
     updateRaycasting();
     updateFX(delta);
+    updateWeaponBobSway(delta);
     state.renderer.render(state.scene, state.camera);
 }

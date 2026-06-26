@@ -31,6 +31,9 @@ export function setupControls() {
             state.camera.rotation.set(0, 0, 0);
             state.camera.rotation.y = state.yaw;
             state.camera.rotation.x = state.pitch;
+
+            state.targetSwayX = Math.max(-40, Math.min(40, e.movementX * 0.4));
+            state.targetSwayY = Math.max(-30, Math.min(30, e.movementY * 0.4));
         }
     });
 

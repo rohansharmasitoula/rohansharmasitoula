@@ -37,5 +37,10 @@ export const state = {
     laserBeams: [],
     particleSystems: [],
     hits: 0,
-    misses: 0
+    misses: 0,
+    weaponBobContainer: null,
+    swayX: 0,
+    swayY: 0,
+    targetSwayX: 0,
+    targetSwayY: 0
 };
