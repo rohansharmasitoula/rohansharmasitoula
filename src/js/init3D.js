@@ -20,7 +20,7 @@ export function init3D() {
 
     state.raycaster = new THREE.Raycaster();
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
     state.scene.add(ambientLight);
 
     addNeonLights();
