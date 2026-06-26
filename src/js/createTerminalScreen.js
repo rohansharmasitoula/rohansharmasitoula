@@ -1,30 +1,52 @@
 import { state } from './state.js';
 
 function drawCracks(ctx, x, y) {
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
     ctx.lineWidth = 2;
-    const numRays = 10;
+
+    for (let r = 25; r < 140; r += 35) {
+        ctx.beginPath();
+        const steps = 16;
+        for (let j = 0; j <= steps; j++) {
+            const angle = (j / steps) * Math.PI * 2;
+            const rad = r + (Math.random() - 0.5) * 12;
+            const px = x + Math.cos(angle) * rad;
+            const py = y + Math.sin(angle) * rad;
+            if (j === 0) {
+                ctx.moveTo(px, py);
+            } else {
+                if (Math.random() > 0.15) {
+                    ctx.lineTo(px, py);
+                } else {
+                    ctx.moveTo(px, py);
+                }
+            }
+        }
+        ctx.stroke();
+    }
+
+    const numRays = 12;
     for (let i = 0; i < numRays; i++) {
         ctx.beginPath();
         ctx.moveTo(x, y);
         let curX = x;
         let curY = y;
-        const angle = (i / numRays) * Math.PI * 2 + (Math.random() - 0.5) * 0.2;
-        const length = 80 + Math.random() * 120;
-        const steps = 3;
+        const angle = (i / numRays) * Math.PI * 2 + (Math.random() - 0.5) * 0.25;
+        const length = 120 + Math.random() * 160;
+        const steps = 4;
         for (let j = 0; j < steps; j++) {
             const stepLen = length / steps;
-            curX += Math.cos(angle) * stepLen + (Math.random() - 0.5) * 15;
-            curY += Math.sin(angle) * stepLen + (Math.random() - 0.5) * 15;
+            curX += Math.cos(angle) * stepLen + (Math.random() - 0.5) * 18;
+            curY += Math.sin(angle) * stepLen + (Math.random() - 0.5) * 18;
             ctx.lineTo(curX, curY);
         }
         ctx.stroke();
     }
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
-    ctx.lineWidth = 3;
+
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
     ctx.beginPath();
-    ctx.arc(x, y, 12, 0, Math.PI * 2);
-    ctx.stroke();
+    ctx.arc(x, y, 6, 0, Math.PI * 2);
+    ctx.fill();
 }
 
 export function redrawTerminalScreen(screenMesh) {

@@ -45,38 +45,43 @@ export function fireWeapon() {
                 state.screenStates[key].impacts.push({ x: canvasX, y: canvasY });
                 redrawTerminalScreen(hitScreen);
 
-                const shardGeo = new THREE.BufferGeometry();
-                const shardCount = 50;
-                const shardPos = new Float32Array(shardCount * 3);
-                const shardVel = [];
+                const shardCount = 35;
+                const glassColor = hitScreen.userData.spec.color;
 
                 for (let i = 0; i < shardCount; i++) {
-                    shardPos[i * 3] = hitPt.x;
-                    shardPos[i * 3 + 1] = hitPt.y;
-                    shardPos[i * 3 + 2] = hitPt.z;
+                    const shardGeo = new THREE.TetrahedronGeometry(0.04 + Math.random() * 0.08, 0);
+                    const shardMat = new THREE.MeshStandardMaterial({
+                        color: new THREE.Color(glassColor),
+                        transparent: true,
+                        opacity: 0.7,
+                        roughness: 0.1,
+                        metalness: 0.9,
+                        side: THREE.DoubleSide
+                    });
+                    const shardMesh = new THREE.Mesh(shardGeo, shardMat);
+                    shardMesh.position.copy(hitPt);
+                    state.scene.add(shardMesh);
 
-                    shardVel.push(new THREE.Vector3(
-                        (Math.random() - 0.5) * 6,
-                        (Math.random() - 0.2) * 5,
-                        (Math.random() - 0.5) * 6
-                    ));
+                    const vel = new THREE.Vector3(
+                        (Math.random() - 0.5) * 8,
+                        (Math.random() - 0.2) * 7 + 2,
+                        (Math.random() - 0.5) * 8
+                    );
+                    const rotVel = new THREE.Vector3(
+                        (Math.random() - 0.5) * 10,
+                        (Math.random() - 0.5) * 10,
+                        (Math.random() - 0.5) * 10
+                    );
+
+                    state.particleSystems.push({
+                        mesh: shardMesh,
+                        velocity: vel,
+                        angularVelocity: rotVel,
+                        age: 0,
+                        maxAge: 1.2,
+                        type: 'shards'
+                    });
                 }
-                shardGeo.setAttribute('position', new THREE.BufferAttribute(shardPos, 3));
-                const shardMat = new THREE.PointsMaterial({
-                    size: 0.15,
-                    color: 0xffffff,
-                    transparent: true,
-                    opacity: 0.9
-                });
-                const shardPoints = new THREE.Points(shardGeo, shardMat);
-                state.scene.add(shardPoints);
-                state.particleSystems.push({
-                    mesh: shardPoints,
-                    velocities: shardVel,
-                    age: 0,
-                    maxAge: 0.8,
-                    type: 'shards'
-                });
             } else {
                 state.screenStates[key].impacts.push({ x: canvasX, y: canvasY });
                 redrawTerminalScreen(hitScreen);

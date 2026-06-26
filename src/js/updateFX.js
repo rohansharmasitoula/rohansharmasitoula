@@ -19,19 +19,34 @@ export function updateFX(delta) {
     state.particleSystems.forEach(sys => {
         sys.age += delta;
         if (sys.age < sys.maxAge) {
-            const posAttr = sys.mesh.geometry.getAttribute('position');
-            const arr = posAttr.array;
-            for (let i = 0; i < sys.velocities.length; i++) {
-                const vel = sys.velocities[i];
-                if (sys.type === 'shards') {
-                    vel.y -= 9.8 * delta;
+            if (sys.type === 'shards') {
+                sys.velocity.y -= 9.8 * delta;
+                sys.mesh.position.addScaledVector(sys.velocity, delta);
+
+                if (sys.mesh.position.y < 0.08 && sys.velocity.y < 0) {
+                    sys.mesh.position.y = 0.08;
+                    sys.velocity.y = -sys.velocity.y * 0.4;
+                    sys.velocity.x *= 0.6;
+                    sys.velocity.z *= 0.6;
                 }
-                arr[i * 3] += vel.x * delta;
-                arr[i * 3 + 1] += vel.y * delta;
-                arr[i * 3 + 2] += vel.z * delta;
+
+                sys.mesh.rotation.x += sys.angularVelocity.x * delta;
+                sys.mesh.rotation.y += sys.angularVelocity.y * delta;
+                sys.mesh.rotation.z += sys.angularVelocity.z * delta;
+
+                sys.mesh.material.opacity = 0.7 * (1 - sys.age / sys.maxAge);
+            } else {
+                const posAttr = sys.mesh.geometry.getAttribute('position');
+                const arr = posAttr.array;
+                for (let i = 0; i < sys.velocities.length; i++) {
+                    const vel = sys.velocities[i];
+                    arr[i * 3] += vel.x * delta;
+                    arr[i * 3 + 1] += vel.y * delta;
+                    arr[i * 3 + 2] += vel.z * delta;
+                }
+                posAttr.needsUpdate = true;
+                sys.mesh.material.opacity = 1 - (sys.age / sys.maxAge);
             }
-            posAttr.needsUpdate = true;
-            sys.mesh.material.opacity = 1 - (sys.age / sys.maxAge);
             activeParticles.push(sys);
         } else {
             state.scene.remove(sys.mesh);
