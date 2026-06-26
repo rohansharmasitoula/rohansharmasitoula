@@ -102,8 +102,8 @@ export function redrawTerminalScreen(screenMesh) {
         ctx.fillStyle = '#ffffff';
         ctx.font = "bold 26px 'Orbitron', Arial, sans-serif";
         ctx.fillText(`MODULE: ${spec.title}`, canvas.width / 2, 380);
-        ctx.fillStyle = '#94a3b8';
-        ctx.font = "24px 'Outfit', sans-serif";
+        ctx.fillStyle = '#ffffff';
+        ctx.font = "bold 24px 'Outfit', sans-serif";
         ctx.fillText("FIRE COBALT BLASTER TO SHATTER SECURITY GLASS", canvas.width / 2, 480);
         ctx.strokeStyle = spec.color;
         ctx.lineWidth = 4;
@@ -176,7 +176,7 @@ export function redrawTerminalScreen(screenMesh) {
 
         if (key === 'skills') {
             ctx.fillStyle = '#ffffff';
-            ctx.font = "20px 'Outfit', sans-serif";
+            ctx.font = "bold 22px 'Outfit', sans-serif";
             wrapText(ctx, typewriterText(rawData.description, progress), 50, 135, 920, 28);
 
             let colY = 220;
@@ -188,8 +188,8 @@ export function redrawTerminalScreen(screenMesh) {
                 ctx.font = "bold 24px 'Orbitron', Arial, sans-serif";
                 ctx.fillText(typewriterText(cat.name.toUpperCase(), progress), colX, rowY);
 
-                ctx.fillStyle = '#94a3b8';
-                ctx.font = "20px 'Outfit', sans-serif";
+                ctx.fillStyle = '#ffffff';
+                ctx.font = "bold 20px 'Outfit', sans-serif";
                 cat.skills.forEach((skill, sIdx) => {
                     ctx.fillText(typewriterText(`· ${skill}`, progress), colX + 15, rowY + 35 + sIdx * 30);
                 });
@@ -207,8 +207,8 @@ export function redrawTerminalScreen(screenMesh) {
                     const durW = ctx.measureText(role.duration).width;
                     ctx.fillText(typewriterText(role.duration.toUpperCase(), progress), canvas.width - 50 - durW, itemY);
 
-                    ctx.fillStyle = '#94a3b8';
-                    ctx.font = "18px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = "bold 18px 'Outfit', sans-serif";
                     role.highlights.forEach((high, hIdx) => {
                         if (hIdx < 2) {
                             itemY = wrapText(ctx, typewriterText(`- ${high}`, progress), 70, itemY + 30, 880, 24);
@@ -228,8 +228,8 @@ export function redrawTerminalScreen(screenMesh) {
                 ctx.font = "bold 20px 'Orbitron', Arial, sans-serif";
                 ctx.fillText(typewriterText(project.subtitle.toUpperCase(), progress), 50, itemY + 35);
 
-                ctx.fillStyle = '#e2e8f0';
-                ctx.font = "22px 'Outfit', sans-serif";
+                ctx.fillStyle = '#ffffff';
+                ctx.font = "bold 22px 'Outfit', sans-serif";
                 itemY = wrapText(ctx, typewriterText(project.description, progress), 50, itemY + 80, 920, 28);
                 itemY = wrapText(ctx, typewriterText(project.subdescription, progress), 50, itemY + 15, 920, 28);
 
@@ -248,8 +248,8 @@ export function redrawTerminalScreen(screenMesh) {
                     ctx.textAlign = 'center';
                     ctx.fillText(typewriterText(stat.value, progress), boxX + 210, boxY + 65);
 
-                    ctx.fillStyle = '#94a3b8';
-                    ctx.font = "18px 'Orbitron', Arial, sans-serif";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = "bold 18px 'Orbitron', Arial, sans-serif";
                     ctx.fillText(typewriterText(stat.label.toUpperCase(), progress), boxX + 210, boxY + 110);
                     ctx.textAlign = 'left';
                 });
@@ -262,11 +262,11 @@ export function redrawTerminalScreen(screenMesh) {
                 ctx.fillText(typewriterText(pub.title.toUpperCase(), progress), 50, itemY);
 
                 ctx.fillStyle = '#ffffff';
-                ctx.font = "22px 'Outfit', sans-serif";
+                ctx.font = "bold 22px 'Outfit', sans-serif";
                 ctx.fillText(typewriterText(pub.paper, progress), 50, itemY + 35);
 
-                ctx.fillStyle = '#94a3b8';
-                ctx.font = "20px 'Outfit', sans-serif";
+                ctx.fillStyle = '#ffffff';
+                ctx.font = "bold 20px 'Outfit', sans-serif";
                 itemY = wrapText(ctx, typewriterText(pub.description, progress), 50, itemY + 75, 920, 26);
                 itemY += 40;
             });
@@ -281,8 +281,8 @@ export function redrawTerminalScreen(screenMesh) {
                 const durW = ctx.measureText(deg.duration).width;
                 ctx.fillText(typewriterText(deg.duration.toUpperCase(), progress), canvas.width - 50 - durW, itemY);
 
-                ctx.fillStyle = '#94a3b8';
-                ctx.font = "22px 'Outfit', sans-serif";
+                ctx.fillStyle = '#ffffff';
+                ctx.font = "bold 22px 'Outfit', sans-serif";
                 ctx.fillText(typewriterText(`${deg.institution}  ·  ${deg.grade}`, progress), 50, itemY + 35);
                 itemY += 80;
             });
@@ -318,8 +318,8 @@ export function redrawTerminalScreen(screenMesh) {
                     ctx.font = "bold 18px 'Orbitron', Arial, sans-serif";
                     wrapText(ctx, typewriterText(item.title.toUpperCase(), progress), pos.x + 210, pos.y + 40, 215, 22);
 
-                    ctx.fillStyle = '#e2e8f0';
-                    ctx.font = "15px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = "bold 16px 'Outfit', sans-serif";
                     wrapText(ctx, typewriterText(item.description, progress), pos.x + 210, pos.y + 110, 215, 20);
                 }
             });
@@ -348,8 +348,8 @@ export function redrawTerminalScreen(screenMesh) {
             ctx.font = "bold 24px 'Orbitron', Arial, sans-serif";
             ctx.fillText(typewriterText(rawData.role.toUpperCase(), progress), 280, 240);
 
-            ctx.fillStyle = '#94a3b8';
-            ctx.font = "22px 'Outfit', sans-serif";
+            ctx.fillStyle = '#ffffff';
+            ctx.font = "bold 22px 'Outfit', sans-serif";
             ctx.fillText(typewriterText(`${rawData.location}  ·  ${rawData.phone}`, progress), 280, 280);
             ctx.fillText(typewriterText(rawData.email, progress), 280, 315);
 
@@ -368,7 +368,7 @@ export function redrawTerminalScreen(screenMesh) {
                 ctx.fillText(typewriterText(link.label.toUpperCase(), progress), colX + 25, rowY + 45);
 
                 ctx.fillStyle = spec.color;
-                ctx.font = "18px 'Outfit', sans-serif";
+                ctx.font = "bold 18px 'Outfit', sans-serif";
                 ctx.fillText(typewriterText(link.address, progress), colX + 25, rowY + 85);
             });
         }
@@ -398,12 +398,9 @@ export function createTerminalScreen(spec) {
     const texture = new THREE.CanvasTexture(canvas);
     
     const screenGeo = new THREE.PlaneGeometry(screenW, screenH);
-    const screenMat = new THREE.MeshStandardMaterial({
+    const screenMat = new THREE.MeshBasicMaterial({
         map: texture,
-        emissive: new THREE.Color(spec.color),
-        emissiveIntensity: 0.15,
-        roughness: 0.3,
-        metalness: 0.8
+        side: THREE.DoubleSide
     });
     const screenMesh = new THREE.Mesh(screenGeo, screenMat);
     screenMesh.position.set(spec.x, 3.5, spec.z);
