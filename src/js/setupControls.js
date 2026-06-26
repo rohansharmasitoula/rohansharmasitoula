@@ -12,13 +12,11 @@ export function setupControls() {
             state.isLocked = true;
             state.blocker.style.opacity = 0;
             setTimeout(() => state.blocker.style.display = 'none', 500);
-            state.modeDisplay.textContent = "LOCKED";
         } else {
             state.isLocked = false;
             if (!state.isModalOpen) {
                 state.blocker.style.display = 'flex';
                 setTimeout(() => state.blocker.style.opacity = 1, 10);
-                state.modeDisplay.textContent = "FREE";
             }
             state.interactionPrompt.classList.remove('active');
         }

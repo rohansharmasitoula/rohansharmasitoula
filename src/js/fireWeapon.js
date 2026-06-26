@@ -5,6 +5,7 @@ import { openInspectionTerminal } from './openInspectionTerminal.js';
 export function fireWeapon() {
     const weaponContainer = document.getElementById('weapon-container');
     const muzzleFlash = document.getElementById('muzzle-flash');
+    const weaponImg = document.querySelector('.weapon-img');
 
     if (weaponContainer) {
         weaponContainer.style.animation = 'none';
@@ -18,17 +19,29 @@ export function fireWeapon() {
         muzzleFlash.style.animation = 'flash-burst 0.1s ease-out';
     }
 
+    if (weaponImg) {
+        weaponImg.src = 'assets/fps_deagle_fire.jpg';
+        setTimeout(() => {
+            if (weaponImg) {
+                weaponImg.src = 'assets/fps_deagle_weapon.jpg';
+            }
+        }, 120);
+    }
+
     state.raycaster.set(state.camera.position, new THREE.Vector3(0, 0, -1).applyQuaternion(state.camera.quaternion));
     const intersects = state.raycaster.intersectObjects(state.screenMeshes);
 
+    let isHit = false;
     let endPoint = state.camera.position.clone().add(new THREE.Vector3(0, 0, -50).applyQuaternion(state.camera.quaternion));
     
     if (intersects.length > 0) {
         const hitPt = intersects[0].point;
-        endPoint = hitPt;
-
         const distance = intersects[0].distance;
+
         if (distance < 9.5) {
+            isHit = true;
+            endPoint = hitPt;
+
             const hitScreen = intersects[0].object;
             const key = hitScreen.userData.terminalKey;
             
@@ -123,7 +136,17 @@ export function fireWeapon() {
         }
     }
 
-    const startPoint = state.camera.position.clone().add(new THREE.Vector3(0.2, -0.2, -0.5).applyQuaternion(state.camera.quaternion));
+    if (isHit) {
+        state.hits += 1;
+    } else {
+        state.misses += 1;
+    }
+
+    if (state.scoreDisplay) {
+        state.scoreDisplay.textContent = `HITS: ${state.hits} | MISSES: ${state.misses}`;
+    }
+
+    const startPoint = state.camera.position.clone().add(new THREE.Vector3(0, -0.2, -0.5).applyQuaternion(state.camera.quaternion));
     const laserGeo = new THREE.BufferGeometry();
     const vertices = new Float32Array([
         startPoint.x, startPoint.y, startPoint.z,

@@ -27,7 +27,7 @@ export const state = {
     instructions: null,
     playButton: null,
     posDisplay: null,
-    modeDisplay: null,
+    scoreDisplay: null,
     interactionPrompt: null,
     detailModal: null,
     closeModal: null,
@@ -35,5 +35,7 @@ export const state = {
     modalBody: null,
     screenStates: {},
     laserBeams: [],
-    particleSystems: []
+    particleSystems: [],
+    hits: 0,
+    misses: 0
 };

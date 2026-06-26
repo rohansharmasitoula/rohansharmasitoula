@@ -926,22 +926,23 @@ body, html {
 #weapon-hud {
     position: absolute;
     bottom: -15px;
-    right: 0;
-    width: 420px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 450px;
     height: 420px;
     pointer-events: none;
     z-index: 5;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .weapon-container {
     position: relative;
-    width: 360px;
-    height: 360px;
-    transform-origin: bottom right;
+    width: 400px;
+    height: 400px;
+    transform-origin: bottom center;
     transition: transform 0.08s ease-out;
 }
 
@@ -955,15 +956,23 @@ body, html {
 
 .muzzle-flash {
     position: absolute;
-    top: 95px;
-    left: 45px;
-    width: 140px;
-    height: 140px;
+    top: 130px;
+    left: 60px;
+    width: 150px;
+    height: 150px;
     background: radial-gradient(circle, #ffffff 10%, #2dd4bf 40%, rgba(45, 212, 191, 0) 75%);
     opacity: 0;
     transform: scale(0.5);
     pointer-events: none;
     z-index: 10;
+}
+
+#weapon-stats-hud {
+    position: absolute;
+    bottom: 25px;
+    right: 40px;
+    z-index: 5;
+    pointer-events: none;
 }
 
 .weapon-stats-panel {
@@ -978,8 +987,6 @@ body, html {
     flex-direction: column;
     gap: 4px;
     width: 180px;
-    margin-right: 40px;
-    margin-bottom: 25px;
     backdrop-filter: blur(4px);
 }
 
@@ -998,7 +1005,7 @@ body, html {
 
 @keyframes fire-recoil {
     0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-    8% { transform: translate(30px, -45px) scale(0.9) rotate(-14deg); }
+    10% { transform: translate(0, 30px) scale(0.93) rotate(3deg); }
     100% { transform: translate(0, 0) scale(1) rotate(0deg); }
 }
 
