@@ -20,10 +20,10 @@ export function fireWeapon() {
     }
 
     if (weaponImg) {
-        weaponImg.src = 'assets/fps_deagle_fire.jpg';
+        weaponImg.src = 'assets/fps_deagle_fire.png';
         setTimeout(() => {
             if (weaponImg) {
-                weaponImg.src = 'assets/fps_deagle_weapon.jpg';
+                weaponImg.src = 'assets/fps_deagle_weapon.png';
             }
         }, 120);
     }
