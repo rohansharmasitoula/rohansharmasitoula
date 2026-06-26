@@ -57,4 +57,27 @@ Enterprise proctoring infrastructure integrated directly into LMS environments. 
 
 <br>
 
+### `> git push origin main:gh-pages`
+
+#### Deployment to GitHub Pages
+To host this portfolio on GitHub Pages, perform the following steps:
+1. **Stage and commit your local changes**:
+   ```bash
+   git add .
+   git commit -m "feat: update color schemes, remove rotating shapes, and add LinkedIn images"
+   ```
+2. **Push your code to GitHub**:
+   ```bash
+   git push origin main
+   ```
+3. **Configure GitHub Pages in Settings**:
+   - Navigate to your repository on GitHub.
+   - Go to **Settings** -> **Pages** (in the left sidebar).
+   - Under **Build and deployment** -> **Source**, select **Deploy from a branch**.
+   - Under **Branch**, select `main` and folder `/ (root)`.
+   - Click **Save**.
+   - After a minute or two, your website will be live at `https://rohansharmasitoula.github.io/` (or your repository URL)!
+
+<br>
+
 `[Tmux Session 0 Detached. Connection Closed.]`

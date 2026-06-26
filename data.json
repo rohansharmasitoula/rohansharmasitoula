@@ -1,0 +1,203 @@
+{
+  "skills": {
+    "title": "Technical Skills",
+    "subtitle": "Core Languages, Distributed Systems, AI, and Cloud",
+    "icon": "fa-tools",
+    "color": "#2dd4bf",
+    "description": "Senior Software Engineer specializing in production-grade AI pipelines and scalable, event-driven microservices.",
+    "categories": [
+      {
+        "name": "Languages & Frameworks",
+        "skills": ["Python", "TypeScript (ES6+)", "Go", "PHP", "Node.js"]
+      },
+      {
+        "name": "Distributed Systems & APIs",
+        "skills": ["Kafka", "Temporal", "RabbitMQ", "REST", "GraphQL", "gRPC"]
+      },
+      {
+        "name": "AI / ML & Real-Time",
+        "skills": ["OpenAI", "LlamaIndex", "Langchain", "Langfuse", "Azure AI Foundry", "WebRTC", "LiveKit"]
+      },
+      {
+        "name": "Cloud, Databases & Ops",
+        "skills": ["AWS (Lambda, SQS, SNS, S3)", "Docker", "Kubernetes", "PostgreSQL", "Redis", "Clickhouse", "OpenTelemetry", "TDD (Jest, Pytest)"]
+      }
+    ]
+  },
+  "work": {
+    "title": "Work Experience",
+    "subtitle": "Senior SWE, SE & Associate SWE @ Talview (2023 - Present)",
+    "icon": "fa-briefcase",
+    "color": "#f43f5e",
+    "company": "Talview (AIWF Technologies Pvt Ltd)",
+    "roles": [
+      {
+        "title": "Senior Software Engineer",
+        "duration": "Mar 2026 – Present (Bengaluru, India)",
+        "highlights": [
+          "Architected technical roadmaps across multiple squads by authoring Architecture Decision Records (ADRs), reducing technical debt.",
+          "Built custom CI/CD tooling for automated code review enforcement, cutting manual review turnaround by 35% across the deployment pipeline.",
+          "Led product grooming and sprint planning for the core proctoring squad, translating complex technical epics into well-scoped tasks.",
+          "Developed a multimodal RAG support agent (Azure OpenAI, LangChain) that analyzes candidate text queries and screenshots to instantly troubleshoot live assessment issues."
+        ]
+      },
+      {
+        "title": "Software Engineer",
+        "duration": "Mar 2025 – Mar 2026 (Bengaluru, India)",
+        "highlights": [
+          "Spearheaded \"Alvy,\" a patented agentic AI proctor using LLMs, Vision Models, and LlamaIndex for multimodal reasoning — achieving 90% human parity in malpractice detection.",
+          "Designed real-time object detection pipelines for video, audio, and screen feeds using LLMs and native ML models.",
+          "Scaled live interview and proctoring infrastructure to 1M+ annual sessions using Twilio, LiveKit, and Azure Communication Services.",
+          "Built secure remote assessment pipelines integrating facial recognition, photo-ID verification, and dual-camera environment monitoring."
+        ]
+      },
+      {
+        "title": "Associate Software Engineer",
+        "duration": "May 2023 – Mar 2025 (Bengaluru, India)",
+        "highlights": [
+          "Worked on event-driven microservices with Node.js, Kafka, Temporal, and GraphQL supporting 5,000+ concurrent examination sessions.",
+          "Integrated enterprise proctoring workflows into 5+ global LMS platforms (Moodle, Canvas, Brightspace, Intellum, etc) via LTI protocols and custom browser extensions.",
+          "Built a high-throughput video transcoding service converting MKV/MKA to MP4, reducing composition costs by 20%.",
+          "Optimized revenue operations by integrating Stripe and Lemon Squeezy for end-to-end certification purchasing."
+        ]
+      },
+      {
+        "title": "Engineering Intern",
+        "duration": "Jan 2023 – May 2023 (Bengaluru, India)",
+        "highlights": [
+          "Reduced API response latency by 40% for data-intensive operations by migrating legacy REST endpoints to GraphQL.",
+          "Integrated Sentry distributed tracing across PHP and Node.js applications, cutting incident triage time by 50%.",
+          "Increased test coverage from 40% to 75% for mission-critical modules by introducing Jest and TDD methodologies.",
+          "Automated HR leave workflows via a Slack BoltJS + AWS Lambda integration, reducing processing time by 90%."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Projects & Open Source",
+    "subtitle": "blocknote-py - Creator & Maintainer",
+    "icon": "fa-code-branch",
+    "color": "#2dd4bf",
+    "contributions": [
+      {
+        "title": "blocknote-py (Python)",
+        "subtitle": "Creator & Maintainer (2025)",
+        "description": "Created an open-source library (3k+ downloads) that enables seamless parsing and manipulation of BlockNote block-structured documents on backend systems.",
+        "subdescription": "Built with strict Test-Driven Development (TDD) pipelines and Pydantic schemas, ensuring full compatibility with nesting models and block data translations.",
+        "stats": [
+          { "label": "Downloads", "value": "3k+" },
+          { "label": "TDD Test Coverage", "value": "95%+" }
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Education & Publications",
+    "subtitle": "Research Paper & MCA / BCA degrees",
+    "icon": "fa-graduation-cap",
+    "color": "#a855f7",
+    "publications": [
+      {
+        "title": "Research Publication",
+        "duration": "2024 (Journal of Soft Computing & Data Mining)",
+        "paper": "\"Fine-Grained Classification for Emotion Detection Using Advanced Neural Models and GoEmotions Dataset\"",
+        "description": "Co-authored paper evaluating classification layers. RoBERTa achieved F1-score of 0.8458 in gratitude detection, outperforming BERT and CNN models."
+      }
+    ],
+    "degrees": [
+      {
+        "name": "Master of Computer Applications (MCA)",
+        "duration": "2021 – 2023",
+        "institution": "Sikkim Manipal Institute of Technology",
+        "grade": "CGPA: 8.9 / 10.0"
+      },
+      {
+        "name": "Bachelor of Computer Applications (BCA)",
+        "duration": "2018 – 2021",
+        "institution": "Sikkim Manipal Institute of Technology",
+        "grade": "CGPA: 9.7 / 10.0"
+      }
+    ]
+  },
+  "achievements": {
+    "title": "Achievements & Awards",
+    "subtitle": "Key recognitions and highlights from Talview & publications",
+    "icon": "fa-trophy",
+    "color": "#fbbf24",
+    "items": [
+      {
+        "title": "Talview Champion Award (2024)",
+        "description": "Honored to receive the Champion Award for driving core AI engineering & proctoring innovations.",
+        "url": "https://www.linkedin.com/posts/rohan-sharma-sitoula_honoured-to-receive-the-champion-award-for-share-7250161830432518144-FsmB",
+        "icon": "fas fa-trophy",
+        "colorClass": "text-gold"
+      },
+      {
+        "title": "Product Engineering Star Performer (2023)",
+        "description": "Recognized for outstanding engineering contributions to real-time communication infra & scalability.",
+        "url": "https://www.linkedin.com/posts/rohan-sharma-sitoula_honoured-to-receive-the-product-engineering-share-7120689119344644096-cZvO",
+        "icon": "fas fa-award",
+        "colorClass": "text-gold"
+      },
+      {
+        "title": "Talview Growth Journey & Success Story",
+        "description": "Featured employee success story detailing engineering growth from intern to senior squad leader.",
+        "url": "https://www.linkedin.com/posts/talview-employeesuccessstory-growthjourney-share-7454420176617467904-Zsn1",
+        "icon": "fas fa-chart-line",
+        "colorClass": "text-cyan"
+      },
+      {
+        "title": "NLP Sentiment Analysis Project Spotlight",
+        "description": "Showcased emotion detection research co-authored in JSDCM.",
+        "url": "https://www.linkedin.com/posts/rohan-sharma-sitoula_emotiondetection-sentimentanalysis-artificialintelligence-share-7277517357906849792-1MbN",
+        "icon": "fas fa-brain",
+        "colorClass": "text-purple"
+      },
+      {
+        "title": "Engineering Leadership Share",
+        "description": "Shared insights on automated review workflows, Temporal orchestrators, and system scale.",
+        "url": "https://www.linkedin.com/posts/rohan-sharma-sitoula_share-7423424834556067840-kF_T",
+        "icon": "fab fa-linkedin",
+        "colorClass": "text-blue"
+      }
+    ]
+  },
+  "contacts": {
+    "title": "Contact Info",
+    "subtitle": "Get in touch for AI & Distributed Systems projects",
+    "icon": "fa-address-card",
+    "color": "#a855f7",
+    "name": "Rohan Sharma Sitoula",
+    "role": "Senior Software Engineer",
+    "location": "Bengaluru, India",
+    "phone": "+91 78668 57257",
+    "email": "sitoularohansharma@gmail.com",
+    "profilePic": "https://media.licdn.com/dms/image/v2/D5603AQFFTk8WNyIVvA/profile-displayphoto-scale_400_400/B56Z51STtOIcAg-/0/1780084197293?e=1784160000&v=beta&t=2i7_HWZje7RMbQp_B-OvXW55RthohvMQd3wY3yMfbQs",
+    "links": [
+      {
+        "label": "LinkedIn Profile",
+        "address": "linkedin.com/in/rohan-sharma-sitoula",
+        "url": "https://linkedin.com/in/rohan-sharma-sitoula",
+        "icon": "fab fa-linkedin"
+      },
+      {
+        "label": "Github Profile",
+        "address": "github.com/rohansharmasitoula",
+        "url": "https://github.com/rohansharmasitoula",
+        "icon": "fab fa-github"
+      },
+      {
+        "label": "Email Address",
+        "address": "TCP :25 [sitoularohansharma@gmail.com]",
+        "url": "mailto:sitoularohansharma@gmail.com",
+        "icon": "fas fa-envelope"
+      },
+      {
+        "label": "NLP Research Paper",
+        "address": "TCP :80 [jscdm/article/view/17843]",
+        "url": "https://publisher.uthm.edu.my/ojs/index.php/jscdm/article/view/17843",
+        "icon": "fas fa-book"
+      }
+    ]
+  }
+}
