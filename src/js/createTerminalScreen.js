@@ -308,19 +308,20 @@ export function redrawTerminalScreen(screenMesh) {
 
                     const img = state.achievementImages[idx];
                     if (img && img.complete && progress > 0.8) {
-                        ctx.drawImage(img, pos.x + 15, pos.y + 20, 180, 240);
+                        const maxW = cardW - 30;
+                        const maxH = cardH - 40;
+                        let drawW = img.width;
+                        let drawH = img.height;
+                        const ratio = Math.min(maxW / drawW, maxH / drawH);
+                        drawW *= ratio;
+                        drawH *= ratio;
+                        const imgX = pos.x + (cardW - drawW) / 2;
+                        const imgY = pos.y + (cardH - drawH) / 2;
+                        ctx.drawImage(img, imgX, imgY, drawW, drawH);
                         ctx.lineWidth = 2;
                         ctx.strokeStyle = spec.color;
-                        ctx.strokeRect(pos.x + 15, pos.y + 20, 180, 240);
+                        ctx.strokeRect(imgX, imgY, drawW, drawH);
                     }
-
-                    ctx.fillStyle = spec.color;
-                    ctx.font = "bold 18px 'Orbitron', Arial, sans-serif";
-                    wrapText(ctx, typewriterText(item.title.toUpperCase(), progress), pos.x + 210, pos.y + 40, 215, 22);
-
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = "bold 16px 'Outfit', sans-serif";
-                    wrapText(ctx, typewriterText(item.description, progress), pos.x + 210, pos.y + 110, 215, 20);
                 }
             });
         } else if (key === 'contacts') {
