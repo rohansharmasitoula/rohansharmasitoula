@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohan Sharma Sitoula — A Journey in Code</title>
+<meta name="description" content="Senior Software Engineer. Builder of AI pipelines, real-time systems, and stories in code.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050505;
+    --bg-soft: #0c0c0e;
+    --ink: #e8e6e1;
+    --ink-dim: #9a968e;
+    --ink-faint: #55524c;
+    --accent: #c9a86a;
+    --line: rgba(201, 168, 106, 0.25);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* Stars canvas */
+  #stars {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  main { position: relative; z-index: 1; }
+
+  section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 9vh 24px;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1.1s ease, transform 1.1s ease;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 24px;
+  }
+  .hero-portrait {
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    padding: 5px;
+    margin-bottom: 32px;
+    filter: grayscale(15%);
+    box-shadow: 0 0 60px rgba(201, 168, 106, 0.12);
+  }
+  .hero .kicker {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(42px, 8vw, 88px);
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+  }
+  .hero .sub {
+    margin-top: 24px;
+    color: var(--ink-dim);
+    font-size: clamp(15px, 2vw, 18px);
+    max-width: 480px;
+  }
+  .hero .scroll-hint {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  .hero .scroll-hint:hover { color: var(--accent); }
+  .scroll-mouse {
+    width: 22px;
+    height: 36px;
+    border: 1px solid var(--ink-faint);
+    border-radius: 12px;
+    position: relative;
+  }
+  .scroll-mouse::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    width: 3px;
+    height: 7px;
+    margin-left: -1.5px;
+    border-radius: 2px;
+    background: var(--accent);
+    animation: wheel 2.2s ease-in-out infinite;
+  }
+  @keyframes wheel {
+    0% { transform: translateY(0); opacity: 0; }
+    25% { opacity: 1; }
+    70% { transform: translateY(12px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 0; }
+  }
+
+  /* Chapter markers */
+  .chapter {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .chapter::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--line), transparent);
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(30px, 5vw, 46px);
+    line-height: 1.2;
+    margin-bottom: 28px;
+  }
+  h2 em { font-style: italic; color: var(--accent); }
+
+  p.story {
+    color: var(--ink-dim);
+    font-size: 17px;
+    margin-bottom: 20px;
+  }
+  p.story strong { color: var(--ink); font-weight: 400; }
+
+  .year {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+
+  /* Photo frames */
+  .frame {
+    margin: 48px 0;
+    position: relative;
+  }
+  .frame img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+    filter: grayscale(35%) contrast(1.02);
+    transition: filter 0.8s ease;
+  }
+  .frame:hover img { filter: grayscale(0%); }
+  .frame figcaption {
+    margin-top: 14px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-faint);
+    text-align: center;
+  }
+
+  .portrait {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    padding: 6px;
+    margin-bottom: 36px;
+    filter: grayscale(20%);
+  }
+
+  /* Stats strip */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 32px;
+    margin: 56px 0;
+    text-align: center;
+  }
+  .stats .num {
+    font-family: var(--serif);
+    font-size: 40px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stats .label {
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* Skills */
+  .skill-group { margin-top: 48px; }
+  .skill-group h3 {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .skill-group h3::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+  .skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+  .skill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px;
+    background: rgba(255,255,255,0.015);
+    transition: border-color 0.4s, background 0.4s, transform 0.4s;
+  }
+  .skill:hover {
+    border-color: var(--line);
+    background: rgba(201,168,106,0.05);
+    transform: translateY(-2px);
+  }
+  .skill img {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    filter: grayscale(100%) brightness(1.6);
+    opacity: 0.75;
+    transition: filter 0.4s, opacity 0.4s;
+  }
+  .skill:hover img { filter: none; opacity: 1; }
+  .skill span {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-dim);
+  }
+  .skill:hover span { color: var(--ink); }
+
+  /* Quote */
+  blockquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(22px, 3.5vw, 30px);
+    line-height: 1.5;
+    color: var(--ink);
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  blockquote footer {
+    margin-top: 20px;
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  /* Footer / contact */
+  .contact {
+    text-align: center;
+    padding-bottom: 12vh;
+  }
+  .contact .links {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .contact a {
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 3px;
+    transition: color 0.4s, border-color 0.4s;
+  }
+  .contact a:hover { color: var(--accent); border-color: var(--accent); }
+  .colophon {
+    margin-top: 80px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  /* Gallery */
+  .gallery-section { max-width: 880px; }
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .gallery .frame { margin: 0; }
+  .gallery .frame img {
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  @media (max-width: 560px) {
+    .gallery { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<main>
+
+  <!-- ✦ Hero -->
+  <section class="hero">
+    <img class="hero-portrait reveal" src="assets/profile_pic.jpg" alt="Rohan Sharma Sitoula">
+    <div class="kicker reveal">systems · stories · starlight</div>
+    <h1 class="reveal">Rohan Sharma<br>Sitoula</h1>
+    <p class="sub reveal">Senior Software Engineer in Bengaluru — architecting distributed systems and building AI that watches, listens, and understands. This is the story so far.</p>
+    <a class="scroll-hint" href="#prologue">
+      <div class="scroll-mouse"></div>
+      scroll
+    </a>
+  </section>
+
+  <!-- ✦ Prologue -->
+  <section id="prologue">
+    <blockquote class="reveal" style="margin-bottom: 96px">
+      "The best infrastructure is invisible.<br>You only notice it when it's gone."
+      <footer>— a lesson from a million sessions</footer>
+    </blockquote>
+    <div class="chapter reveal">Prologue</div>
+    <h2 class="reveal">Every system begins<br>as a <em>question</em>.</h2>
+    <p class="story reveal">Mine was simple: how far can software see? Over three years I've chased that question through <strong>production AI pipelines</strong>, <strong>event-driven microservices</strong>, and real-time infrastructure serving Fortune 500 clients — while keeping the <strong>lowest SLA breach rate</strong> on my team.</p>
+    <p class="story reveal">Along the way: a <strong>patented agentic AI proctor</strong> that reached 90% human parity, and systems carrying over a million sessions a year.</p>
+    <div class="stats reveal">
+      <div><div class="num">1M+</div><div class="label">annual sessions</div></div>
+      <div><div class="num">90%</div><div class="label">human parity · AI proctor</div></div>
+      <div><div class="num">1</div><div class="label">patent</div></div>
+      <div><div class="num">3+</div><div class="label">years shipping</div></div>
+    </div>
+  </section>
+
+  <!-- ✦ The Toolkit -->
+  <section>
+    <div class="chapter reveal">The Toolkit</div>
+    <h2 class="reveal">Instruments of<br>the <em>trade</em>.</h2>
+    <div class="skill-group reveal">
+      <h3>Languages & Runtimes</h3>
+      <div class="skill-grid">
+        <div class="skill"><img src="assets/icons/python.svg" alt="" onerror="this.remove()"><span>Python</span></div>
+        <div class="skill"><img src="assets/icons/typescript.svg" alt="" onerror="this.remove()"><span>TypeScript</span></div>
+        <div class="skill"><img src="assets/icons/javascript.svg" alt="" onerror="this.remove()"><span>JavaScript</span></div>
+        <div class="skill"><img src="assets/icons/go.svg" alt="" onerror="this.remove()"><span>Go</span></div>
+        <div class="skill"><img src="assets/icons/nodedotjs.svg" alt="" onerror="this.remove()"><span>Node.js</span></div>
+        <div class="skill"><img src="assets/icons/php.svg" alt="" onerror="this.remove()"><span>PHP</span></div>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>AI & Machine Learning</h3>
+      <div class="skill-grid">
+        <div class="skill"><img src="assets/icons/openai.svg" alt="" onerror="this.remove()"><span>OpenAI</span></div>
+        <div class="skill"><img src="assets/icons/langchain.svg" alt="" onerror="this.remove()"><span>LangChain</span></div>
+        <div class="skill"><img src="assets/icons/spark.svg" alt="" onerror="this.remove()"><span>LlamaIndex</span></div>
+        <div class="skill"><img src="assets/icons/spark.svg" alt="" onerror="this.remove()"><span>Langfuse</span></div>
+        <div class="skill"><img src="assets/icons/spark.svg" alt="" onerror="this.remove()"><span>RAG Pipelines</span></div>
+        <div class="skill"><img src="assets/icons/microsoftazure.svg" alt="" onerror="this.remove()"><span>Azure AI Foundry</span></div>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Distributed Systems & APIs</h3>
+      <div class="skill-grid">
+        <div class="skill"><img src="assets/icons/apachekafka.svg" alt="" onerror="this.remove()"><span>Kafka</span></div>
+        <div class="skill"><img src="assets/icons/temporal.svg" alt="" onerror="this.remove()"><span>Temporal</span></div>
+        <div class="skill"><img src="assets/icons/rabbitmq.svg" alt="" onerror="this.remove()"><span>RabbitMQ</span></div>
+        <div class="skill"><img src="assets/icons/graphql.svg" alt="" onerror="this.remove()"><span>GraphQL</span></div>
+        <div class="skill"><img src="assets/icons/spark.svg" alt="" onerror="this.remove()"><span>gRPC</span></div>
+        <div class="skill"><img src="assets/icons/openapiinitiative.svg" alt="" onerror="this.remove()"><span>REST</span></div>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Cloud & Infrastructure</h3>
+      <div class="skill-grid">
+        <div class="skill"><img src="assets/icons/amazonaws.svg" alt="" onerror="this.remove()"><span>AWS</span></div>
+        <div class="skill"><img src="assets/icons/awslambda.svg" alt="" onerror="this.remove()"><span>Lambda</span></div>
+        <div class="skill"><img src="assets/icons/docker.svg" alt="" onerror="this.remove()"><span>Docker</span></div>
+        <div class="skill"><img src="assets/icons/kubernetes.svg" alt="" onerror="this.remove()"><span>Kubernetes</span></div>
+        <div class="skill"><img src="assets/icons/githubactions.svg" alt="" onerror="this.remove()"><span>CI/CD</span></div>
+        <div class="skill"><img src="assets/icons/microsoftazure.svg" alt="" onerror="this.remove()"><span>Azure Functions</span></div>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Data & Real-Time</h3>
+      <div class="skill-grid">
+        <div class="skill"><img src="assets/icons/postgresql.svg" alt="" onerror="this.remove()"><span>PostgreSQL</span></div>
+        <div class="skill"><img src="assets/icons/redis.svg" alt="" onerror="this.remove()"><span>Redis</span></div>
+        <div class="skill"><img src="assets/icons/clickhouse.svg" alt="" onerror="this.remove()"><span>ClickHouse</span></div>
+        <div class="skill"><img src="assets/icons/firebase.svg" alt="" onerror="this.remove()"><span>Firebase</span></div>
+        <div class="skill"><img src="assets/icons/hasura.svg" alt="" onerror="this.remove()"><span>Hasura</span></div>
+        <div class="skill"><img src="assets/icons/webrtc.svg" alt="" onerror="this.remove()"><span>WebRTC</span></div>
+        <div class="skill"><img src="assets/icons/livekit.svg" alt="" onerror="this.remove()"><span>LiveKit</span></div>
+        <div class="skill"><img src="assets/icons/twilio.svg" alt="" onerror="this.remove()"><span>Twilio</span></div>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Observability & Testing</h3>
+      <div class="skill-grid">
+        <div class="skill"><img src="assets/icons/opentelemetry.svg" alt="" onerror="this.remove()"><span>OpenTelemetry</span></div>
+        <div class="skill"><img src="assets/icons/prometheus.svg" alt="" onerror="this.remove()"><span>Prometheus</span></div>
+        <div class="skill"><img src="assets/icons/grafana.svg" alt="" onerror="this.remove()"><span>Grafana</span></div>
+        <div class="skill"><img src="assets/icons/sentry.svg" alt="" onerror="this.remove()"><span>Sentry</span></div>
+        <div class="skill"><img src="assets/icons/spark.svg" alt="" onerror="this.remove()"><span>SigNoz</span></div>
+        <div class="skill"><img src="assets/icons/jest.svg" alt="" onerror="this.remove()"><span>Jest · TDD</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✦ Chapter I -->
+  <section>
+    <div class="chapter reveal">Chapter I — First Light</div>
+    <div class="year reveal">2023</div>
+    <h2 class="reveal">The intern who<br>rewired the <em>pipes</em>.</h2>
+    <p class="story reveal">I joined Talview as an engineering intern in January 2023 and went looking for friction. The first thing I found: legacy REST endpoints dragging down every page load. Migrating them to GraphQL cut API response latency by <strong>40%</strong> — and taught me that the fastest code is often the code you delete.</p>
+    <p class="story reveal">Then came observability. I wired <strong>Sentry distributed tracing</strong> across the PHP and Node.js applications, and incident triage time — the frantic "where is it broken?" phase — <strong>dropped by half</strong>. Bugs stopped hiding.</p>
+    <p class="story reveal">The last mark I left as an intern was cultural: introducing <strong>Jest and test-driven development</strong>, taking coverage from 40% to <strong>75%</strong>. Six months later, the internship became a job.</p>
+  </section>
+
+  <!-- ✦ Chapter II -->
+  <section>
+    <div class="chapter reveal">Chapter II — Scale</div>
+    <div class="year reveal">2023 – 2025</div>
+    <h2 class="reveal">Five thousand exams,<br>all at <em>once</em>.</h2>
+    <p class="story reveal">As an Associate Engineer, the problems changed shape: no longer "make this endpoint faster," but "make this system survive exam day." I built <strong>event-driven microservices</strong> on Node.js, Kafka, Temporal, and GraphQL that held steady under <strong>5,000+ concurrent exam sessions</strong> — where a dropped event means a candidate's worst day.</p>
+    <p class="story reveal">Proctoring had to go where the students were, so I integrated our workflows into <strong>five global LMS platforms</strong> — Moodle, Canvas, Brightspace, Intellum — via LTI and custom browser extensions, each with its own quirks and none with good documentation.</p>
+    <p class="story reveal">In between, I wrote a <strong>video transcoding service</strong> (MKV/MKA to MP4) that cut composition costs by <strong>20%</strong>, and wired up <strong>Stripe and Lemon Squeezy</strong> so certifications became a product people could actually buy, end to end.</p>
+  </section>
+
+  <!-- ✦ Chapter III -->
+  <section>
+    <div class="chapter reveal">Chapter III — The Machine That Watches</div>
+    <div class="year reveal">2025 – 2026</div>
+    <h2 class="reveal">Teaching software<br>to <em>pay attention</em>.</h2>
+    <p class="story reveal">Then came the project that changed everything: <strong>Alvy</strong>, a patented, multimodal agentic AI proctor I spearheaded — built on LLMs, vision models, LangChain, and LlamaIndex. It watches video, listens to audio, reads screens, and reasons about what it sees. In malpractice detection, it reached <strong>90% parity with human proctors</strong>.</p>
+    <p class="story reveal">Getting there meant designing <strong>real-time object detection pipelines</strong> across three simultaneous feeds — camera, microphone, and screen — flagging unauthorized items and behaviors in high-stakes assessments as they happen, not after.</p>
+    <p class="story reveal">Around it, I scaled the live interview and proctoring infrastructure past <strong>a million sessions a year</strong> on Twilio, LiveKit, and Azure Communication Services — with <strong>facial recognition, photo-ID verification, and dual-camera monitoring</strong> keeping every one of those sessions honest.</p>
+  </section>
+
+  <!-- ✦ Chapter IV -->
+  <section>
+    <div class="chapter reveal">Chapter IV — The Architect</div>
+    <div class="year reveal">2026 — present</div>
+    <h2 class="reveal">Now I draw<br>the <em>maps</em>.</h2>
+    <p class="story reveal">As a Senior Engineer, the work moved from building services to designing the city they live in. I led the design and scaffolding of <strong>eight core microservices</strong> — auth, payments, notifications, session management, media intelligence, events, incident generation, and booking — on Temporal and AWS Lambda, spanning gRPC and REST, with <strong>tenant federation, multi-region deployments, and database sharding</strong> built in from day one.</p>
+    <p class="story reveal">The blueprints matter as much as the buildings: I write the <strong>Architecture Decision Records</strong> that shape roadmaps across multiple squads, cutting technical debt company-wide. I built custom <strong>CI/CD tooling for automated code review enforcement</strong> that dropped review turnaround by <strong>35%</strong>, and I run backlog grooming and sprint planning for the core proctoring squad.</p>
+    <p class="story reveal">I also champion the tools that make teams faster — establishing <strong>TDD standards</strong> and driving adoption of AI coding assistants like Codex and Claude. My latest build: a <strong>multimodal RAG support agent</strong> on Azure OpenAI and LangChain that troubleshoots live assessment issues straight from our internal knowledge base. Through all of it, one number I protect: the <strong>lowest SLA breach rate on the team</strong>, for Fortune 500 clients who notice.</p>
+  </section>
+
+
+  <!-- ✦ Margins -->
+  <section>
+    <div class="chapter reveal">In the Margins</div>
+    <h2 class="reveal">Things built<br>for the <em>joy of it</em>.</h2>
+    <p class="story reveal"><strong>blocknote-py</strong> — an open-source Python library for parsing BlockNote documents. 3,000+ downloads on PyPI.</p>
+    <p class="story reveal"><strong>Research</strong> — "Fine-Grained Classification for Emotion Detection Using Advanced Neural Models and GoEmotions Dataset," published in the Journal of Soft Computing and Data Mining, 2024.</p>
+    <p class="story reveal"><strong>Study</strong> — MCA (8.9 CGPA) and BCA (9.7 CGPA), Sikkim Manipal Institute of Technology.</p>
+  </section>
+
+  <!-- ✦ Gallery -->
+  <section class="gallery-section">
+    <div class="chapter reveal">Field Notes</div>
+    <h2 class="reveal">Kept from<br>along the <em>way</em>.</h2>
+    <div class="gallery">
+      <figure class="frame reveal">
+        <img src="assets/growth_journey.jpg" alt="Growth journey" loading="lazy">
+        <figcaption>the long way up</figcaption>
+      </figure>
+      <figure class="frame reveal">
+        <img src="assets/star_performer.jpg" alt="Star performer award" loading="lazy">
+        <figcaption>star performer</figcaption>
+      </figure>
+      <figure class="frame reveal">
+        <img src="assets/champion_award.jpg" alt="Champion award" loading="lazy">
+        <figcaption>champion</figcaption>
+      </figure>
+      <figure class="frame reveal">
+        <img src="assets/leadership_share.jpg" alt="Sharing with the team" loading="lazy">
+        <figcaption>passing it on</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ✦ Epilogue -->
+  <section class="contact">
+    <div class="chapter reveal" style="justify-content:center">Epilogue</div>
+    <h2 class="reveal">The next chapter<br>is <em>unwritten</em>.</h2>
+    <p class="story reveal" style="max-width:480px;margin-left:auto;margin-right:auto">If you're building something worth building — let's talk.</p>
+    <div class="links reveal">
+      <a href="mailto:sitoularohansharma@gmail.com">email</a>
+      <a href="https://github.com/rohansharmasitoula" target="_blank" rel="noopener">github</a>
+      <a href="https://www.linkedin.com/in/rohansharmasitoula" target="_blank" rel="noopener">linkedin</a>
+    </div>
+    <div class="colophon">Bengaluru, India · rohan sharma sitoula</div>
+  </section>
+
+</main>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Subtle starfield
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  function resize() {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    stars = Array.from({ length: Math.min(160, innerWidth / 8) }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.1 + 0.2,
+      p: Math.random() * Math.PI * 2,
+      s: 0.004 + Math.random() * 0.008
+    }));
+  }
+  resize();
+  addEventListener('resize', resize);
+  (function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const st of stars) {
+      st.p += st.s;
+      const a = 0.15 + Math.abs(Math.sin(st.p)) * 0.5;
+      ctx.beginPath();
+      ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(232, 230, 225, ${a})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  })();
+</script>
+</body>
+</html>
