@@ -4,9 +4,6 @@
 
 **`systems · stories · starlight`**
 
-Senior Software Engineer in Bengaluru — architecting distributed systems<br>
-and building AI that watches, listens, and understands.
-
 <a href="https://rohansharmasitoula.github.io/rohansharmasitoula/">
   <img src="assets/site_preview.png" alt="rohansharmasitoula.github.io — a journey in code" width="100%" />
 </a>
