@@ -17,10 +17,26 @@
     --ink-faint: #55524c;
     --accent: #c9a86a;
     --line: rgba(201, 168, 106, 0.25);
+    --chip-line: rgba(255, 255, 255, 0.08);
+    --chip-bg: rgba(255, 255, 255, 0.015);
+    --star: 232, 230, 225;
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'Inter', -apple-system, sans-serif;
     --mono: 'JetBrains Mono', monospace;
   }
+  :root[data-theme="light"] {
+    --bg: #faf6ef;
+    --bg-soft: #f2ede3;
+    --ink: #221e18;
+    --ink-dim: #5f584c;
+    --ink-faint: #a89e8d;
+    --accent: #a07d3a;
+    --line: rgba(160, 125, 58, 0.35);
+    --chip-line: rgba(34, 30, 24, 0.1);
+    --chip-bg: rgba(34, 30, 24, 0.02);
+    --star: 120, 105, 80;
+  }
+  html { background: var(--bg); }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
@@ -30,6 +46,30 @@
     font-weight: 300;
     line-height: 1.7;
     overflow-x: hidden;
+    transition: background 0.6s ease, color 0.6s ease;
+  }
+  /* Theme toggle */
+  #theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--chip-line);
+    background: var(--chip-bg);
+    color: var(--ink-dim);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color 0.4s, color 0.4s, transform 0.4s;
+    backdrop-filter: blur(4px);
+  }
+  #theme-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: rotate(20deg);
   }
   ::selection { background: var(--accent); color: var(--bg); }
 
@@ -256,7 +296,7 @@
     content: '';
     flex: 1;
     height: 1px;
-    background: rgba(255,255,255,0.06);
+    background: var(--chip-line);
   }
   .skill-grid {
     display: grid;
@@ -268,9 +308,9 @@
     align-items: center;
     gap: 10px;
     padding: 12px 14px;
-    border: 1px solid rgba(255,255,255,0.07);
+    border: 1px solid var(--chip-line);
     border-radius: 6px;
-    background: rgba(255,255,255,0.015);
+    background: var(--chip-bg);
     transition: border-color 0.4s, background 0.4s, transform 0.4s;
   }
   .skill:hover {
@@ -287,6 +327,10 @@
     transition: filter 0.4s, opacity 0.4s;
   }
   .skill:hover img { filter: none; opacity: 1; }
+  :root[data-theme="light"] .skill img { filter: grayscale(100%) brightness(0.45); }
+  :root[data-theme="light"] .skill:hover img { filter: none; }
+  :root[data-theme="light"] .skill img.ic-w { filter: grayscale(100%) invert(1) brightness(0.45); }
+  :root[data-theme="light"] .skill:hover img.ic-w { filter: invert(1) brightness(0.3); }
   .skill span {
     font-family: var(--mono);
     font-size: 12px;
@@ -359,8 +403,8 @@
   .gallery .frame img {
     aspect-ratio: 16 / 10;
     object-fit: contain;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.05);
+    background: var(--chip-bg);
+    border: 1px solid var(--chip-line);
   }
   @media (max-width: 560px) {
     .gallery { grid-template-columns: 1fr; }
@@ -368,6 +412,7 @@
 </style>
 </head>
 <body>
+<button id="theme-toggle" aria-label="Toggle light/dark mode">☾</button>
 <canvas id="stars"></canvas>
 <main>
 
@@ -419,7 +464,7 @@
     <div class="skill-group reveal">
       <h3>AI & Machine Learning</h3>
       <div class="skill-grid">
-        <div class="skill"><img src="assets/icons/openai.svg" alt="" onerror="this.remove()"><span>OpenAI</span></div>
+        <div class="skill"><img class="ic-w" src="assets/icons/openai.svg" alt="" onerror="this.remove()"><span>OpenAI</span></div>
         <div class="skill"><img src="assets/icons/langchain.svg" alt="" onerror="this.remove()"><span>LangChain</span></div>
         <div class="skill"><img src="assets/icons/spark.svg" alt="" onerror="this.remove()"><span>LlamaIndex</span></div>
         <div class="skill"><img src="assets/icons/spark.svg" alt="" onerror="this.remove()"><span>Langfuse</span></div>
@@ -430,7 +475,7 @@
     <div class="skill-group reveal">
       <h3>Distributed Systems & APIs</h3>
       <div class="skill-grid">
-        <div class="skill"><img src="assets/icons/apachekafka.svg" alt="" onerror="this.remove()"><span>Kafka</span></div>
+        <div class="skill"><img class="ic-w" src="assets/icons/apachekafka.svg" alt="" onerror="this.remove()"><span>Kafka</span></div>
         <div class="skill"><img src="assets/icons/temporal.svg" alt="" onerror="this.remove()"><span>Temporal</span></div>
         <div class="skill"><img src="assets/icons/rabbitmq.svg" alt="" onerror="this.remove()"><span>RabbitMQ</span></div>
         <div class="skill"><img src="assets/icons/graphql.svg" alt="" onerror="this.remove()"><span>GraphQL</span></div>
@@ -457,7 +502,7 @@
         <div class="skill"><img src="assets/icons/clickhouse.svg" alt="" onerror="this.remove()"><span>ClickHouse</span></div>
         <div class="skill"><img src="assets/icons/firebase.svg" alt="" onerror="this.remove()"><span>Firebase</span></div>
         <div class="skill"><img src="assets/icons/hasura.svg" alt="" onerror="this.remove()"><span>Hasura</span></div>
-        <div class="skill"><img src="assets/icons/webrtc.svg" alt="" onerror="this.remove()"><span>WebRTC</span></div>
+        <div class="skill"><img class="ic-w" src="assets/icons/webrtc.svg" alt="" onerror="this.remove()"><span>WebRTC</span></div>
         <div class="skill"><img src="assets/icons/livekit.svg" alt="" onerror="this.remove()"><span>LiveKit</span></div>
         <div class="skill"><img src="assets/icons/twilio.svg" alt="" onerror="this.remove()"><span>Twilio</span></div>
       </div>
@@ -565,6 +610,22 @@
 </main>
 
 <script>
+  // Theme toggle
+  const root = document.documentElement;
+  const toggle = document.getElementById('theme-toggle');
+  const setTheme = t => {
+    if (t === 'light') root.setAttribute('data-theme', 'light');
+    else root.removeAttribute('data-theme');
+    toggle.textContent = t === 'light' ? '☀' : '☾';
+    try { localStorage.setItem('theme', t); } catch (e) {}
+  };
+  let saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  setTheme(saved || 'dark');
+  toggle.addEventListener('click', () =>
+    setTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
+  const starRGB = () => getComputedStyle(root).getPropertyValue('--star').trim();
+
   // Scroll reveal
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
@@ -595,7 +656,7 @@
       const a = 0.15 + Math.abs(Math.sin(st.p)) * 0.5;
       ctx.beginPath();
       ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(232, 230, 225, ${a})`;
+      ctx.fillStyle = `rgba(${starRGB()}, ${a})`;
       ctx.fill();
     }
     requestAnimationFrame(tick);
