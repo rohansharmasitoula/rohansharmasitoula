@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="assets/profile_pic.jpg" width="130" style="border-radius: 50%" alt="Rohan Sharma Sitoula" />
-
 # Rohan Sharma Sitoula
 
 **`systems · stories · starlight`**
