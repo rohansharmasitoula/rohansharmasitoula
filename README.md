@@ -17,12 +17,6 @@
 > You only notice it when it breaks."*<br>
 > — a lesson from a million sessions
 
-<br>
-
-| `1M+` | `90%` | `1` | `3+` |
-|:---:|:---:|:---:|:---:|
-| annual sessions | human parity · AI proctor | patent | years shipping |
-
 </div>
 
 <br>
