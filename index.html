@@ -300,7 +300,7 @@
   }
   .skill-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 12px;
   }
   .skill {
@@ -335,6 +335,8 @@
     font-family: var(--mono);
     font-size: 12px;
     color: var(--ink-dim);
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
   .skill:hover span { color: var(--ink); }
 
@@ -391,23 +393,54 @@
     text-transform: uppercase;
   }
 
-  /* Gallery */
-  .gallery-section { max-width: 880px; }
-  .gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 24px;
+  /* Polaroid photos in chapters */
+  .polaroid {
+    width: 290px;
+    padding: 12px 12px 14px;
+    background: #f5f2ea;
+    border-radius: 3px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
   }
-  .gallery .frame { margin: 0; }
-  .gallery .frame img {
-    aspect-ratio: 16 / 10;
-    object-fit: contain;
-    background: var(--chip-bg);
-    border: 1px solid var(--chip-line);
+  :root[data-theme="light"] .polaroid {
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(34, 30, 24, 0.18), 0 2px 6px rgba(34, 30, 24, 0.1);
   }
-  @media (max-width: 560px) {
-    .gallery { grid-template-columns: 1fr; }
+  .polaroid img {
+    width: 100%;
+    display: block;
+    filter: grayscale(25%);
+    transition: filter 0.6s ease;
+  }
+  .polaroid:hover img { filter: none; }
+  .polaroid figcaption {
+    margin-top: 10px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: #55524c;
+    text-align: center;
+  }
+  .polaroid.pol-right {
+    float: right;
+    margin: 8px 0 24px 32px;
+    transform: rotate(2.2deg);
+  }
+  .polaroid.pol-left {
+    float: left;
+    margin: 8px 32px 24px 0;
+    transform: rotate(-2.2deg);
+  }
+  .polaroid:hover { transform: rotate(0deg) scale(1.02); }
+  section::after { content: ''; display: block; clear: both; }
+  @media (max-width: 680px) {
+    .polaroid.pol-right, .polaroid.pol-left {
+      float: none;
+      width: 100%;
+      max-width: 340px;
+      margin: 32px auto;
+      transform: none;
+    }
   }
 </style>
 </head>
@@ -535,6 +568,10 @@
     <div class="chapter reveal">Chapter II — Scale</div>
     <div class="year reveal">2023 – 2025</div>
     <h2 class="reveal">Five thousand exams,<br>all at <em>once</em>.</h2>
+    <figure class="polaroid pol-right reveal">
+      <img src="assets/growth_journey.jpg" alt="Growth journey" loading="lazy">
+      <figcaption>the long way up</figcaption>
+    </figure>
     <p class="story reveal">As an Associate Engineer, the problems changed shape: no longer "make this endpoint faster," but "make this system survive exam day." I built <strong>event-driven microservices</strong> on Node.js, Kafka, Temporal, and GraphQL that held steady under <strong>5,000+ concurrent exam sessions</strong> — where a dropped event means a candidate's worst day.</p>
     <p class="story reveal">Proctoring had to go where the students were, so I integrated our workflows into <strong>five global LMS platforms</strong> — Moodle, Canvas, Brightspace, Intellum — via LTI and custom browser extensions, each with its own quirks and none with good documentation.</p>
     <p class="story reveal">In between, I wrote a <strong>video transcoding service</strong> (MKV/MKA to MP4) that cut composition costs by <strong>20%</strong>, and wired up <strong>Stripe and Lemon Squeezy</strong> so certifications became a product people could actually buy, end to end.</p>
@@ -545,8 +582,16 @@
     <div class="chapter reveal">Chapter III — The Machine That Watches</div>
     <div class="year reveal">2025 – 2026</div>
     <h2 class="reveal">Teaching software<br>to <em>pay attention</em>.</h2>
+    <figure class="polaroid pol-left reveal">
+      <img src="assets/star_performer.jpg" alt="Star performer award" loading="lazy">
+      <figcaption>star performer</figcaption>
+    </figure>
     <p class="story reveal">Then came the project that changed everything: <strong>Alvy</strong>, a patented, multimodal agentic AI proctor I spearheaded — built on LLMs, vision models, LangChain, and LlamaIndex. It watches video, listens to audio, reads screens, and reasons about what it sees. In malpractice detection, it reached <strong>90% parity with human proctors</strong>.</p>
     <p class="story reveal">Getting there meant designing <strong>real-time object detection pipelines</strong> across three simultaneous feeds — camera, microphone, and screen — flagging unauthorized items and behaviors in high-stakes assessments as they happen, not after.</p>
+    <figure class="polaroid pol-right reveal">
+      <img src="assets/champion_award.jpg" alt="Champion award" loading="lazy">
+      <figcaption>champion</figcaption>
+    </figure>
     <p class="story reveal">Around it, I scaled the live interview and proctoring infrastructure past <strong>a million sessions a year</strong> on Twilio, LiveKit, and Azure Communication Services — with <strong>facial recognition, photo-ID verification, and dual-camera monitoring</strong> keeping every one of those sessions honest.</p>
   </section>
 
@@ -555,6 +600,10 @@
     <div class="chapter reveal">Chapter IV — The Architect</div>
     <div class="year reveal">2026 — present</div>
     <h2 class="reveal">Now I draw<br>the <em>maps</em>.</h2>
+    <figure class="polaroid pol-right reveal">
+      <img src="assets/leadership_share.jpg" alt="Sharing with the team" loading="lazy">
+      <figcaption>passing it on</figcaption>
+    </figure>
     <p class="story reveal">As a Senior Engineer, the work moved from building services to designing the city they live in. I led the design and scaffolding of <strong>eight core microservices</strong> — auth, payments, notifications, session management, media intelligence, events, incident generation, and booking — on Temporal and AWS Lambda, spanning gRPC and REST, with <strong>tenant federation, multi-region deployments, and database sharding</strong> built in from day one.</p>
     <p class="story reveal">The blueprints matter as much as the buildings: I write the <strong>Architecture Decision Records</strong> that shape roadmaps across multiple squads, cutting technical debt company-wide. I built custom <strong>CI/CD tooling for automated code review enforcement</strong> that dropped review turnaround by <strong>35%</strong>, and I run backlog grooming and sprint planning for the core proctoring squad.</p>
     <p class="story reveal">I also champion the tools that make teams faster — establishing <strong>TDD standards</strong> and driving adoption of AI coding assistants like Codex and Claude. My latest build: a <strong>multimodal RAG support agent</strong> on Azure OpenAI and LangChain that troubleshoots live assessment issues straight from our internal knowledge base. Through all of it, one number I protect: the <strong>lowest SLA breach rate on the team</strong>, for Fortune 500 clients who notice.</p>
@@ -568,30 +617,6 @@
     <p class="story reveal"><strong>blocknote-py</strong> — an open-source Python library for parsing BlockNote documents. 3,000+ downloads on PyPI.</p>
     <p class="story reveal"><strong>Research</strong> — "Fine-Grained Classification for Emotion Detection Using Advanced Neural Models and GoEmotions Dataset," published in the Journal of Soft Computing and Data Mining, 2024.</p>
     <p class="story reveal"><strong>Study</strong> — MCA (8.9 CGPA) and BCA (9.7 CGPA), Sikkim Manipal Institute of Technology.</p>
-  </section>
-
-  <!-- ✦ Gallery -->
-  <section class="gallery-section">
-    <div class="chapter reveal">Field Notes</div>
-    <h2 class="reveal">Kept from<br>along the <em>way</em>.</h2>
-    <div class="gallery">
-      <figure class="frame reveal">
-        <img src="assets/growth_journey.jpg" alt="Growth journey" loading="lazy">
-        <figcaption>the long way up</figcaption>
-      </figure>
-      <figure class="frame reveal">
-        <img src="assets/star_performer.jpg" alt="Star performer award" loading="lazy">
-        <figcaption>star performer</figcaption>
-      </figure>
-      <figure class="frame reveal">
-        <img src="assets/champion_award.jpg" alt="Champion award" loading="lazy">
-        <figcaption>champion</figcaption>
-      </figure>
-      <figure class="frame reveal">
-        <img src="assets/leadership_share.jpg" alt="Sharing with the team" loading="lazy">
-        <figcaption>passing it on</figcaption>
-      </figure>
-    </div>
   </section>
 
   <!-- ✦ Epilogue -->
